@@ -577,9 +577,12 @@
         <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-slate-200 my-auto">
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <!-- Image Side -->
-                <div class="bg-slate-100 relative min-h-[260px] md:min-h-[400px]">
-                    <img id="detailImage" src="" alt="Shoe Detail" class="w-full h-full object-cover">
-                    <span id="detailBadge" class="absolute top-4 left-4 bg-brand-dark text-amber-400 text-xs font-bold px-3 py-1 rounded-full"></span>
+                <div class="bg-slate-100 relative min-h-[280px] md:min-h-[420px] flex flex-col justify-between">
+                    <div class="relative flex-1 overflow-hidden">
+                        <img id="detailImage" src="" alt="Shoe Detail" class="w-full h-full object-cover">
+                        <span id="detailBadge" class="absolute top-4 left-4 bg-brand-dark text-amber-400 text-xs font-bold px-3 py-1 rounded-full"></span>
+                    </div>
+                    <div id="detailThumbnails" class="hidden p-3 bg-white/90 backdrop-blur border-t border-slate-200 flex items-center gap-2 overflow-x-auto no-scrollbar"></div>
                 </div>
                 <!-- Info Side -->
                 <div class="p-6 sm:p-8 flex flex-col justify-between">
@@ -740,22 +743,32 @@
                             </div>
                         </div>
 
-                        <!-- Image Upload OR Image URL -->
+                        <!-- Multi-Photo Upload OR Multiple Image URLs -->
                         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
-                            <label class="block text-xs font-bold text-slate-800">Shoe Photo (Upload from Mobile/PC OR Paste Image Link)</label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-center">
+                            <div class="flex items-center justify-between">
+                                <label class="block text-xs font-bold text-slate-800">Shoe Photos (Upload Multiple Photos OR Add Multiple Image Links)</label>
+                                <span id="multiImageCountLabel" class="text-[11px] font-bold text-amber-700">0 photos</span>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-start">
                                 <div>
-                                    <input type="file" id="prodImageFile" accept="image/*" onchange="handleImageUpload(event)" class="block w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-600 cursor-pointer">
-                                    <p class="text-[11px] text-slate-500 mt-1">Select photo directly from your gallery or computer.</p>
+                                    <input type="file" id="prodImageFile" accept="image/*" multiple onchange="handleImageUpload(event)" class="block w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-600 cursor-pointer">
+                                    <p class="text-[11px] text-slate-500 mt-1">Select 1 or more photos together or in batches. First photo is main cover.</p>
                                 </div>
-                                <div>
-                                    <input type="url" id="prodImageUrl" oninput="previewImageUrl(this.value)" placeholder="Or paste image URL (https://...)" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs outline-none focus:border-amber-500">
+                                <div class="flex gap-2">
+                                    <input type="url" id="prodImageUrl" onkeydown="if(event.key==='Enter'){event.preventDefault();addImageUrlToGallery();}" placeholder="Paste image URL (https://...)" class="flex-1 px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs outline-none focus:border-amber-500">
+                                    <button type="button" onclick="addImageUrlToGallery()" class="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl shrink-0 cursor-pointer">
+                                        + Add
+                                    </button>
                                 </div>
                             </div>
-                            <!-- Preview Box -->
-                            <div id="imagePreviewContainer" class="hidden flex items-center gap-3 pt-2">
-                                <img id="prodImagePreview" src="" alt="Preview" class="w-16 h-16 rounded-xl object-cover border border-slate-300">
-                                <span class="text-xs text-emerald-700 font-semibold"><i class="fa-solid fa-check-circle"></i> Image ready!</span>
+
+                            <!-- Scrollable Multi-Photo Preview Strip -->
+                            <div id="imagePreviewContainer" class="hidden pt-2 border-t border-slate-200/80">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[11px] text-emerald-700 font-semibold"><i class="fa-solid fa-check-circle"></i> Photos ready (click "Cover" to set main photo)</span>
+                                    <button type="button" onclick="clearGalleryImages()" class="text-[11px] text-rose-600 hover:underline font-semibold cursor-pointer">Clear All</button>
+                                </div>
+                                <div id="multiImagePreviewList" class="flex gap-3 overflow-x-auto no-scrollbar pb-1"></div>
                             </div>
                         </div>
 
@@ -884,7 +897,7 @@
         const DEFAULT_STORE_DATA = {
             settings: {
                 email: "walkonshoes@gmail.com",
-                whatsapp: "923001234567",
+                whatsapp: "9233455854484",
                 address: "Footwear Industrial Area, Punjab, Pakistan",
                 pkrToUsdRate: 278,
                 adminPassword: "walkon2026"
@@ -907,6 +920,10 @@
                     material: "Engineered Breathable Knit Mesh",
                     sole: "Ultra-Light Phylon + EVA Cushion",
                     image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+                    images: [
+                        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+                        "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80"
+                    ],
                     description: "Designed for effortless daily movement, gym sessions, and long walks with shock-absorbing heel support."
                 },
                 {
@@ -920,6 +937,10 @@
                     material: "Full-Grain Soft Cow Leather",
                     sole: "Anti-Slip TPR Welt Sole",
                     image: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=800&q=80",
+                    images: [
+                        "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=800&q=80",
+                        "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80"
+                    ],
                     description: "Hand-finished executive dress shoe featuring cushioned leather lining for boardroom comfort and formal events."
                 },
                 {
@@ -933,6 +954,9 @@
                     material: "Premium Matte Suede Microfiber",
                     sole: "Flexible Soft Rubber Grip",
                     image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80",
+                    images: [
+                        "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80"
+                    ],
                     description: "Slip-on everyday casual comfort with breathable inner padding and timeless street style."
                 },
                 {
@@ -946,6 +970,9 @@
                     material: "High-Airflow Jacquard Mesh",
                     sole: "Dual-Density Shock-Absorb Phylon",
                     image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80",
+                    images: [
+                        "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80"
+                    ],
                     description: "Engineered for high-impact running, athletic training, and all-day ergonomic arch support."
                 },
                 {
@@ -959,6 +986,9 @@
                     material: "Stain-Resistant Smooth Action Leather",
                     sole: "Stitched Cup-Sole Rubber",
                     image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80",
+                    images: [
+                        "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80"
+                    ],
                     description: "Crisp minimalist court sneaker built with reinforced stitching and cloud-soft collar padding."
                 },
                 {
@@ -972,6 +1002,9 @@
                     material: "Burnished Calfskin Leather",
                     sole: "Stitched Leather & Rubber Grip",
                     image: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80",
+                    images: [
+                        "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80"
+                    ],
                     description: "Double-buckle formal masterpiece crafted in our leather division for weddings and executive wear."
                 }
             ]
@@ -984,9 +1017,17 @@
         let activeCategory = "All";
         let searchQuery = "";
         let currencyMode = "PKR"; // "PKR" or "USD"
-        let currentUploadedBase64 = "";
+        let currentGalleryImages = [];
         let selectedDetailSize = "";
         let isAdminAuthenticated = false;
+
+        function getProductImages(prod) {
+            if (!prod) return [];
+            if (Array.isArray(prod.images) && prod.images.length > 0) {
+                return prod.images.filter(Boolean);
+            }
+            return prod.image ? [prod.image] : [];
+        }
 
         // Load from localStorage or fallback to embedded DEFAULT_STORE_DATA
         function loadStoreData() {
@@ -999,9 +1040,17 @@
                             ...DEFAULT_STORE_DATA.settings,
                             ...(parsed.settings || {})
                         };
+                        const normalizedProducts = parsed.products.map(p => ({
+                            ...p,
+                            images: Array.isArray(p.images) && p.images.length > 0
+                                ? p.images.filter(Boolean)
+                                : (p.image ? [p.image] : []),
+                            image: p.image || (Array.isArray(p.images) && p.images[0]) || ""
+                        }));
                         return {
                             ...DEFAULT_STORE_DATA,
                             ...parsed,
+                            products: normalizedProducts,
                             settings: mergedSettings
                         };
                     }
@@ -1016,7 +1065,7 @@
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(storeData));
             } catch (e) {
-                showToast("Storage full! Try using image URLs instead of large photos.", "error");
+                showToast("Storage full! Try fewer photos or image URLs.", "error");
             }
         }
 
@@ -1024,7 +1073,8 @@
         function loadCartData() {
             try {
                 const saved = localStorage.getItem(CART_STORAGE_KEY);
-                return Array.isArray(JSON.parse(saved)) ? JSON.parse(saved) : [];
+                const parsed = JSON.parse(saved);
+                return Array.isArray(parsed) ? parsed : [];
             } catch (e) {
                 return [];
             }
@@ -1054,28 +1104,39 @@
             renderCart();
         }
 
-        // Sync Contact Info across Header & Footer
+        // Sync Contact Info across Header, Footer & Sticky WhatsApp Button
         function applyStoreSettingsToUI() {
             const { email, whatsapp, address, pkrToUsdRate, adminPassword } = storeData.settings;
+            const cleanWa = (whatsapp || "9233455854484").replace(/[^0-9]/g, "");
+
             const topEmailLink = document.getElementById("topEmailLink");
             const socialEmailLink = document.getElementById("socialEmailLink");
             const footerEmailDisplay = document.getElementById("footerEmailDisplay");
+            const stickyWaBtn = document.getElementById("stickyWhatsAppBtn");
 
             if (topEmailLink) topEmailLink.href = `mailto:${email}`;
             if (socialEmailLink) socialEmailLink.href = `mailto:${email}`;
             if (footerEmailDisplay) footerEmailDisplay.href = `mailto:${email}`;
+            if (stickyWaBtn && cleanWa) stickyWaBtn.href = `https://wa.me/${cleanWa}`;
 
             document.getElementById("topEmailDisplay").textContent = email;
             document.getElementById("footerEmailDisplay").textContent = email;
-            document.getElementById("footerWhatsappDisplay").textContent = whatsapp ? `+${whatsapp}` : "Not set";
+            document.getElementById("footerWhatsappDisplay").textContent = cleanWa ? `+${cleanWa}` : "Not set";
             document.getElementById("footerAddressDisplay").textContent = address;
 
             // Populate Admin Settings Inputs
             document.getElementById("setEmail").value = email;
-            document.getElementById("setWhatsapp").value = whatsapp;
+            document.getElementById("setWhatsapp").value = cleanWa;
             document.getElementById("setAddress").value = address;
             document.getElementById("setUsdRate").value = pkrToUsdRate || 278;
             document.getElementById("setAdminPassword").value = adminPassword || "walkon2026";
+        }
+
+        function openStickyWhatsApp(event) {
+            if (event) event.preventDefault();
+            const phone = (storeData.settings.whatsapp || "9233455854484").replace(/[^0-9]/g, "") || "9233455854484";
+            const msg = "Assalam-o-Alaikum WalkOn Shoes! I would like to inquire about your footwear collection.";
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
         }
 
         // Render Category Tabs & Dropdowns
@@ -1087,7 +1148,6 @@
 
             const allCats = ["All", ...storeData.categories];
 
-            // 1. Storefront Filter Pills
             tabsContainer.innerHTML = allCats.map(cat => {
                 const isActive = activeCategory === cat;
                 const count = cat === "All"
@@ -1107,14 +1167,12 @@
                 `;
             }).join("");
 
-            // 2. Footer Category Links
             footerCatContainer.innerHTML = storeData.categories.slice(0, 5).map(cat => `
                 <li>
                     <a href="#collections" onclick="selectCategory('${escapeJsArg(cat)}')" class="hover:text-amber-400 transition">${escapeHtml(cat)}</a>
                 </li>
             `).join("");
 
-            // 3. Add Product Modal Dropdown
             const currentProdCat = prodCategorySelect.value;
             prodCategorySelect.innerHTML = storeData.categories.map(cat => `
                 <option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>
@@ -1123,7 +1181,6 @@
                 prodCategorySelect.value = currentProdCat;
             }
 
-            // 4. Admin Categories List
             adminCatList.innerHTML = storeData.categories.map((cat, idx) => `
                 <div class="flex items-center justify-between bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl">
                     <span class="text-sm font-semibold text-slate-800">${escapeHtml(cat)}</span>
@@ -1190,6 +1247,8 @@
 
             emptyState.classList.add("hidden");
             grid.innerHTML = filtered.map(prod => {
+                const imgs = getProductImages(prod);
+                const coverImg = imgs[0] || "";
                 const fallbackImg = `https://placehold.co/600x500/181b22/f59e0b?text=${encodeURIComponent(prod.title)}`;
                 const safeId = escapeJsArg(prod.id);
                 return `
@@ -1197,10 +1256,15 @@
                         <div>
                             <!-- Image Container -->
                             <div onclick="openProductDetail('${safeId}')" class="relative aspect-[4/3] bg-slate-100 overflow-hidden cursor-pointer">
-                                <img src="${escapeHtml(prod.image || fallbackImg)}" alt="${escapeHtml(prod.title)}" onerror="this.src='${fallbackImg}'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <img src="${escapeHtml(coverImg || fallbackImg)}" alt="${escapeHtml(prod.title)}" onerror="this.src='${fallbackImg}'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                 ${prod.badge ? `
                                     <span class="absolute top-3 left-3 bg-brand-dark/90 backdrop-blur text-amber-400 text-[11px] font-bold px-3 py-1 rounded-full shadow">
                                         ${escapeHtml(prod.badge)}
+                                    </span>
+                                ` : ''}
+                                ${imgs.length > 1 ? `
+                                    <span class="absolute top-3 right-3 bg-slate-950/80 backdrop-blur text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+                                        <i class="fa-regular fa-images text-amber-400 mr-1"></i>${imgs.length}
                                     </span>
                                 ` : ''}
                                 <span class="absolute bottom-3 right-3 bg-white/90 backdrop-blur text-slate-800 text-[11px] font-semibold px-2.5 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition">
@@ -1248,16 +1312,32 @@
             renderAdminProductList();
         }
 
-        // Product Detail Modal Logic
+        // Product Detail Modal Logic (with Multi-Photo Thumbnails)
         function openProductDetail(productId) {
             const prod = storeData.products.find(p => p.id === productId);
             if (!prod) return;
 
+            const imgs = getProductImages(prod);
             const fallbackImg = `https://placehold.co/800x600/181b22/f59e0b?text=${encodeURIComponent(prod.title)}`;
             const detailImg = document.getElementById("detailImage");
-            detailImg.src = prod.image || fallbackImg;
+            const activeMainImg = imgs[0] || fallbackImg;
+            detailImg.src = activeMainImg;
             detailImg.alt = prod.title;
             detailImg.onerror = () => { detailImg.src = fallbackImg; };
+
+            const thumbContainer = document.getElementById("detailThumbnails");
+            if (imgs.length > 1) {
+                thumbContainer.classList.remove("hidden");
+                thumbContainer.innerHTML = imgs.map((src, idx) => `
+                    <button type="button" onclick="setDetailMainImage('${escapeJsArg(src)}', '${escapeJsArg(fallbackImg)}', ${idx})"
+                        class="detail-thumb-btn w-14 h-14 rounded-xl overflow-hidden border-2 shrink-0 transition cursor-pointer ${idx === 0 ? 'border-amber-500' : 'border-transparent opacity-70 hover:opacity-100'}">
+                        <img src="${escapeHtml(src)}" alt="" onerror="this.src='${fallbackImg}'" class="w-full h-full object-cover">
+                    </button>
+                `).join("");
+            } else {
+                thumbContainer.classList.add("hidden");
+                thumbContainer.innerHTML = "";
+            }
 
             const badgeEl = document.getElementById("detailBadge");
             if (prod.badge) {
@@ -1294,6 +1374,22 @@
             document.getElementById("productDetailModal").classList.remove("hidden");
         }
 
+        function setDetailMainImage(src, fallbackImg, activeIdx) {
+            const detailImg = document.getElementById("detailImage");
+            detailImg.src = src || fallbackImg;
+            detailImg.onerror = () => { detailImg.src = fallbackImg; };
+
+            document.querySelectorAll(".detail-thumb-btn").forEach((btn, idx) => {
+                if (idx === activeIdx) {
+                    btn.classList.add("border-amber-500");
+                    btn.classList.remove("border-transparent", "opacity-70");
+                } else {
+                    btn.classList.remove("border-amber-500");
+                    btn.classList.add("border-transparent", "opacity-70");
+                }
+            });
+        }
+
         function renderDetailSizeButtons(sizeList) {
             const sizesContainer = document.getElementById("detailSizes");
             sizesContainer.innerHTML = sizeList.map(sz => {
@@ -1327,6 +1423,7 @@
             const prod = storeData.products.find(p => p.id === productId);
             if (!prod) return;
 
+            const imgs = getProductImages(prod);
             const defaultSize = size || (prod.sizes ? prod.sizes.split(",")[0].trim() : "42");
             const existingIndex = cartItems.findIndex(item => item.productId === productId && item.size === defaultSize);
 
@@ -1338,7 +1435,7 @@
                     title: prod.title,
                     pricePkr: Number(prod.pricePkr) || 0,
                     size: defaultSize,
-                    image: prod.image,
+                    image: imgs[0] || prod.image || "",
                     sku: prod.sku || prod.id,
                     qty: 1
                 });
@@ -1414,14 +1511,21 @@
 
         function checkoutCartWhatsApp() {
             if (cartItems.length === 0) return;
-            const phone = (storeData.settings.whatsapp || "923001234567").replace(/[^0-9]/g, "");
+            const phone = (storeData.settings.whatsapp || "9233455854484").replace(/[^0-9]/g, "");
             let totalPkr = 0;
             const lines = cartItems.map((item, i) => {
                 totalPkr += item.pricePkr * item.qty;
                 return `${i + 1}. *${item.title}* (${item.sku}) - Size: ${item.size} x ${item.qty} = ${formatPrice(item.pricePkr * item.qty)}`;
             });
-            const msg = `Assalam-o-Alaikum WalkOn Shoes! I would like to place an order:\n\n${lines.join("\n")}\n\n*Total:* ${formatPrice(totalPkr)}\n\nPlease confirm my order & delivery charges.`;
-            window.open(`https://wa.me/${phone || '923001234567'}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+            const msg = `Assalam-o-Alaikum WalkOn Shoes! I would like to place an order:
+
+${lines.join("
+")}
+
+*Total:* ${formatPrice(totalPkr)}
+
+Please confirm my order & delivery charges.`;
+            window.open(`https://wa.me/${phone || '9233455854484'}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
         }
 
         function checkoutCartEmail() {
@@ -1433,7 +1537,19 @@
                 return `${i + 1}. ${item.title} (${item.sku}) | Size: ${item.size} | Qty: ${item.qty} | Subtotal: ${formatPrice(item.pricePkr * item.qty)}`;
             });
             const subject = `New WalkOn Shoes Order (${cartItems.length} item(s))`;
-            const body = `Hello WalkOn Shoes Team,\n\nI would like to order the following items:\n\n${lines.join("\n")}\n\nTotal: ${formatPrice(totalPkr)}\n\nCustomer Name:\nPhone Number:\nShipping Address:\n`;
+            const body = `Hello WalkOn Shoes Team,
+
+I would like to order the following items:
+
+${lines.join("
+")}
+
+Total: ${formatPrice(totalPkr)}
+
+Customer Name:
+Phone Number:
+Shipping Address:
+`;
             window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
 
@@ -1442,11 +1558,19 @@
             const prod = storeData.products.find(p => p.id === productId);
             if (!prod) return;
 
-            const phone = (storeData.settings.whatsapp || "").replace(/[^0-9]/g, "");
-            const sizeText = chosenSize ? `\nSelected Size: ${chosenSize}` : "";
-            const msg = `Assalam-o-Alaikum WalkOn Shoes! I want to order / inquire about:\n\n*Shoe:* ${prod.title}\n*Category:* ${prod.category}\n*Article:* ${prod.sku || prod.id}\n*Price:* ${formatPrice(prod.pricePkr)}${sizeText}\n\nPlease share availability & delivery details.`;
+            const phone = (storeData.settings.whatsapp || "9233455854484").replace(/[^0-9]/g, "");
+            const sizeText = chosenSize ? `
+Selected Size: ${chosenSize}` : "";
+            const msg = `Assalam-o-Alaikum WalkOn Shoes! I want to order / inquire about:
 
-            const url = `https://wa.me/${phone || '923001234567'}?text=${encodeURIComponent(msg)}`;
+*Shoe:* ${prod.title}
+*Category:* ${prod.category}
+*Article:* ${prod.sku || prod.id}
+*Price:* ${formatPrice(prod.pricePkr)}${sizeText}
+
+Please share availability & delivery details.`;
+
+            const url = `https://wa.me/${phone || '9233455854484'}?text=${encodeURIComponent(msg)}`;
             window.open(url, "_blank", "noopener,noreferrer");
         }
 
@@ -1456,7 +1580,18 @@
 
             const email = storeData.settings.email || "walkonshoes@gmail.com";
             const subject = `Shoe Order Inquiry: ${prod.title} (${prod.sku || prod.id})`;
-            const body = `Hello WalkOn Shoes Team,\n\nI would like to place an order / ask details for:\n- Shoe: ${prod.title}\n- Category: ${prod.category}\n- Price: ${formatPrice(prod.pricePkr)}\n- Size: ${chosenSize || 'Please advise'}\n\nName:\nPhone:\nDelivery Address:\n`;
+            const body = `Hello WalkOn Shoes Team,
+
+I would like to place an order / ask details for:
+- Shoe: ${prod.title}
+- Category: ${prod.category}
+- Price: ${formatPrice(prod.pricePkr)}
+- Size: ${chosenSize || 'Please advise'}
+
+Name:
+Phone:
+Delivery Address:
+`;
             window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
 
@@ -1471,7 +1606,13 @@
 
             const email = storeData.settings.email || "walkonshoes@gmail.com";
             const subject = `WalkOn Manufacturing / Wholesale Inquiry from ${name}`;
-            const body = `Business/Name: ${name}\nPhone/WhatsApp: ${phone}\nInquiry Type: ${type}\nEstimated Quantity: ${qty}\n\nRequirements:\n${message}`;
+            const body = `Business/Name: ${name}
+Phone/WhatsApp: ${phone}
+Inquiry Type: ${type}
+Estimated Quantity: ${qty}
+
+Requirements:
+${message}`;
 
             window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             showToast("Opening your email app to send inquiry to " + email);
@@ -1484,8 +1625,14 @@
             const qty = document.getElementById("inqQty").value.trim() || "Not specified";
             const message = document.getElementById("inqMessage").value.trim() || "Please share your wholesale catalog & factory rates.";
 
-            const waNumber = (storeData.settings.whatsapp || "923001234567").replace(/[^0-9]/g, "");
-            const text = `*WalkOn Shoes - Wholesale / Manufacturing Inquiry*\n\n*Name/Business:* ${name}\n*Contact:* ${phone}\n*Order Type:* ${type}\n*Quantity:* ${qty}\n*Details:* ${message}`;
+            const waNumber = (storeData.settings.whatsapp || "9233455854484").replace(/[^0-9]/g, "");
+            const text = `*WalkOn Shoes - Wholesale / Manufacturing Inquiry*
+
+*Name/Business:* ${name}
+*Contact:* ${phone}
+*Order Type:* ${type}
+*Quantity:* ${qty}
+*Details:* ${message}`;
             window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
         }
 
@@ -1569,7 +1716,7 @@
         }
 
         // =================================================================
-        // ADMIN PANEL FUNCTIONS (ADD / EDIT / DELETE SHOES & CATEGORIES)
+        // ADMIN PANEL FUNCTIONS (MULTI-PHOTO GALLERY + CRUD + SETTINGS)
         // =================================================================
         function openAdminModal(defaultTab = "add-product") {
             if (!isAdminAuthenticated) {
@@ -1599,56 +1746,110 @@
             }
         }
 
-        function handleImageUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement("canvas");
-                    const maxDim = 800;
-                    let width = img.width;
-                    let height = img.height;
-
-                    if (width > maxDim || height > maxDim) {
-                        if (width > height) {
-                            height = Math.round((height * maxDim) / width);
-                            width = maxDim;
-                        } else {
-                            width = Math.round((width * maxDim) / height);
-                            height = maxDim;
-                        }
-                    }
-                    canvas.width = width;
-                    canvas.height = height;
-                    const ctx = canvas.getContext("2d");
-                    ctx.drawImage(img, 0, 0, width, height);
-
-                    currentUploadedBase64 = canvas.toDataURL("image/jpeg", 0.8);
-                    document.getElementById("prodImageUrl").value = "";
-                    showImagePreview(currentUploadedBase64);
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function previewImageUrl(url) {
-            if (url && /^https?:\/\//i.test(url.trim())) {
-                currentUploadedBase64 = "";
-                showImagePreview(url.trim());
-            } else if (!currentUploadedBase64) {
-                document.getElementById("imagePreviewContainer").classList.add("hidden");
-            }
-        }
-
-        function showImagePreview(src) {
+        function renderMultiImagePreview() {
             const container = document.getElementById("imagePreviewContainer");
-            const img = document.getElementById("prodImagePreview");
-            img.src = src;
+            const listEl = document.getElementById("multiImagePreviewList");
+            const countLabel = document.getElementById("multiImageCountLabel");
+
+            countLabel.textContent = `${currentGalleryImages.length} ${currentGalleryImages.length === 1 ? "photo" : "photos"}`;
+
+            if (currentGalleryImages.length === 0) {
+                container.classList.add("hidden");
+                listEl.innerHTML = "";
+                return;
+            }
+
             container.classList.remove("hidden");
+            listEl.innerHTML = currentGalleryImages.map((src, idx) => `
+                <div class="relative w-20 h-20 rounded-xl overflow-hidden border-2 shrink-0 bg-white ${idx === 0 ? 'border-amber-500' : 'border-slate-300'}">
+                    <img src="${escapeHtml(src)}" alt="" onerror="this.src='https://placehold.co/120x120/181b22/f59e0b?text=Photo'" class="w-full h-full object-cover">
+                    <button type="button" onclick="removeGalleryImage(${idx})" title="Remove photo" class="absolute top-1 right-1 w-5 h-5 rounded-full bg-rose-600 text-white text-[10px] flex items-center justify-center shadow cursor-pointer">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    ${idx === 0
+                        ? `<span class="absolute bottom-0 inset-x-0 bg-amber-500 text-slate-950 text-[9px] font-extrabold text-center py-0.5">COVER</span>`
+                        : `<button type="button" onclick="makeCoverImage(${idx})" class="absolute bottom-0 inset-x-0 bg-slate-950/80 hover:bg-slate-950 text-white text-[9px] font-semibold text-center py-0.5 cursor-pointer">Set Cover</button>`
+                    }
+                </div>
+            `).join("");
+        }
+
+        function handleImageUpload(event) {
+            const files = Array.from(event.target.files || []);
+            if (!files.length) return;
+
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement("canvas");
+                        const maxDim = 800;
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > maxDim || height > maxDim) {
+                            if (width > height) {
+                                height = Math.round((height * maxDim) / width);
+                                width = maxDim;
+                            } else {
+                                width = Math.round((width * maxDim) / height);
+                                height = maxDim;
+                            }
+                        }
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext("2d");
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        const compressed = canvas.toDataURL("image/jpeg", 0.78);
+                        if (!currentGalleryImages.includes(compressed)) {
+                            currentGalleryImages.push(compressed);
+                            renderMultiImagePreview();
+                        }
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+
+            event.target.value = "";
+        }
+
+        function addImageUrlToGallery() {
+            const input = document.getElementById("prodImageUrl");
+            const url = input.value.trim();
+            if (!url) {
+                showToast("Paste a valid image URL first.", "info");
+                return;
+            }
+            if (!/^https?:\/\//i.test(url)) {
+                showToast("Image URL must start with http:// or https://", "error");
+                return;
+            }
+            if (!currentGalleryImages.includes(url)) {
+                currentGalleryImages.push(url);
+                renderMultiImagePreview();
+                showToast("Photo link added to gallery!");
+            }
+            input.value = "";
+        }
+
+        function removeGalleryImage(index) {
+            currentGalleryImages.splice(index, 1);
+            renderMultiImagePreview();
+        }
+
+        function makeCoverImage(index) {
+            if (index <= 0 || index >= currentGalleryImages.length) return;
+            const [chosen] = currentGalleryImages.splice(index, 1);
+            currentGalleryImages.unshift(chosen);
+            renderMultiImagePreview();
+        }
+
+        function clearGalleryImages() {
+            currentGalleryImages = [];
+            renderMultiImagePreview();
         }
 
         function saveProduct(e) {
@@ -1663,29 +1864,39 @@
             const material = document.getElementById("prodMaterial").value.trim() || "Premium Quality Upper";
             const sole = document.getElementById("prodSole").value.trim() || "Durable Comfort Sole";
             const description = document.getElementById("prodDescription").value.trim();
-            const urlInput = document.getElementById("prodImageUrl").value.trim();
 
-            let finalImage = currentUploadedBase64 || urlInput;
+            const pendingUrl = document.getElementById("prodImageUrl").value.trim();
+            let finalImages = [...currentGalleryImages];
+            if (pendingUrl && /^https?:\/\//i.test(pendingUrl) && !finalImages.includes(pendingUrl)) {
+                finalImages.push(pendingUrl);
+            }
 
             if (editId) {
                 const idx = storeData.products.findIndex(p => p.id === editId);
                 if (idx !== -1) {
-                    if (!finalImage) finalImage = storeData.products[idx].image;
+                    if (finalImages.length === 0) {
+                        finalImages = getProductImages(storeData.products[idx]);
+                    }
+                    if (finalImages.length === 0) {
+                        finalImages = [`https://placehold.co/800x600/181b22/f59e0b?text=${encodeURIComponent(title)}`];
+                    }
                     storeData.products[idx] = {
                         ...storeData.products[idx],
                         title, category, pricePkr, badge, sku, sizes, material, sole, description,
-                        image: finalImage
+                        image: finalImages[0],
+                        images: finalImages
                     };
                     showToast("Shoe updated successfully!");
                 }
             } else {
-                if (!finalImage) {
-                    finalImage = `https://placehold.co/800x600/181b22/f59e0b?text=${encodeURIComponent(title)}`;
+                if (finalImages.length === 0) {
+                    finalImages = [`https://placehold.co/800x600/181b22/f59e0b?text=${encodeURIComponent(title)}`];
                 }
                 storeData.products.unshift({
                     id: "wo-" + Date.now(),
                     title, category, pricePkr, badge, sku, sizes, material, sole, description,
-                    image: finalImage
+                    image: finalImages[0],
+                    images: finalImages
                 });
                 showToast("New shoe added to WalkOn catalog!");
             }
@@ -1715,14 +1926,10 @@
             document.getElementById("prodMaterial").value = prod.material || "";
             document.getElementById("prodSole").value = prod.sole || "";
             document.getElementById("prodDescription").value = prod.description || "";
+            document.getElementById("prodImageUrl").value = "";
 
-            currentUploadedBase64 = "";
-            if (prod.image && /^https?:\/\//i.test(prod.image)) {
-                document.getElementById("prodImageUrl").value = prod.image;
-            } else {
-                document.getElementById("prodImageUrl").value = "";
-            }
-            if (prod.image) showImagePreview(prod.image);
+            currentGalleryImages = [...getProductImages(prod)];
+            renderMultiImagePreview();
         }
 
         function deleteProduct(productId) {
@@ -1740,8 +1947,8 @@
             document.getElementById("editProductId").value = "";
             document.getElementById("productFormHeading").textContent = "Add New Shoe to Store";
             document.getElementById("cancelEditBtn").classList.add("hidden");
-            document.getElementById("imagePreviewContainer").classList.add("hidden");
-            currentUploadedBase64 = "";
+            currentGalleryImages = [];
+            renderMultiImagePreview();
         }
 
         function renderAdminProductList() {
@@ -1749,14 +1956,16 @@
             document.getElementById("adminProductCount").textContent = storeData.products.length;
 
             listEl.innerHTML = storeData.products.map(prod => {
+                const imgs = getProductImages(prod);
+                const coverImg = imgs[0] || "";
                 const safeId = escapeJsArg(prod.id);
                 return `
                     <div class="flex items-center justify-between gap-3 bg-slate-50 border border-slate-200 p-3 rounded-2xl">
                         <div class="flex items-center gap-3 min-w-0">
-                            <img src="${escapeHtml(prod.image)}" alt="" onerror="this.src='https://placehold.co/100x100/181b22/f59e0b?text=Shoe'" class="w-12 h-12 rounded-xl object-cover shrink-0 bg-slate-200">
+                            <img src="${escapeHtml(coverImg)}" alt="" onerror="this.src='https://placehold.co/100x100/181b22/f59e0b?text=Shoe'" class="w-12 h-12 rounded-xl object-cover shrink-0 bg-slate-200">
                             <div class="min-w-0">
                                 <h5 class="font-bold text-sm text-slate-900 truncate">${escapeHtml(prod.title)}</h5>
-                                <p class="text-xs text-slate-500">${escapeHtml(prod.category)} &bull; <strong>Rs. ${Number(prod.pricePkr).toLocaleString()}</strong></p>
+                                <p class="text-xs text-slate-500">${escapeHtml(prod.category)} &bull; ${imgs.length} photo(s) &bull; <strong>Rs. ${Number(prod.pricePkr).toLocaleString()}</strong></p>
                             </div>
                         </div>
                         <div class="flex items-center gap-2 shrink-0">
@@ -1840,7 +2049,8 @@
                 if (scriptTag) {
                     const serializedData = JSON.stringify(storeData, null, 4);
                     scriptTag.textContent = scriptTag.textContent.replace(
-                        /const DEFAULT_STORE_DATA = \{[\s\S]*?\n        \};/,
+                        /const DEFAULT_STORE_DATA = \{[\s\S]*?
+        \};/,
                         `const DEFAULT_STORE_DATA = ${serializedData};`
                     );
                 }
@@ -1849,7 +2059,8 @@
                     if (el) el.classList.add("hidden");
                 });
 
-                const fullHtml = "<!DOCTYPE html>\n" + docClone.outerHTML;
+                const fullHtml = "<!DOCTYPE html>
+" + docClone.outerHTML;
                 const blob = new Blob([fullHtml], { type: "text/html;charset=utf-8" });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
@@ -1940,7 +2151,7 @@
             initSecretAdminTriggers();
         });
     </script>
-    <a href="https://wa.me/9233455854484" target="_blank" rel="noopener noreferrer" onclick="openStickyWhatsApp(event)" class="walkon-sticky-whatsapp" aria-label="Chat on WhatsApp">
+    <a id="stickyWhatsAppBtn" href="https://wa.me/9233455854484" target="_blank" rel="noopener noreferrer" onclick="openStickyWhatsApp(event)" class="walkon-sticky-whatsapp" aria-label="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp text-xl"></i>
     <span>WhatsApp</span>
 </a>
