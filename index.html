@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WalkOn Shoes | Premium Footwear &amp; Manufacturing</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230f1115'/%3E%3Ctext x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' fill='%23f59e0b' font-family='sans-serif' font-weight='800' font-size='28'%3EW%3C/text%3E%3C/svg%3E">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter & Plus Jakarta Sans -->
@@ -34,28 +35,27 @@
         }
     </script>
     <style>
-     .walkon-sticky-whatsapp {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #16a34a;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 14px;
-    padding: 12px 18px;
-    border-radius: 9999px;
-    box-shadow: 0 12px 24px rgba(22, 163, 74, 0.35), 0 4px 10px rgba(0, 0, 0, 0.18);
-    transition: transform 0.2s ease, background-color 0.2s ease;
-}
-.walkon-sticky-whatsapp:hover {
-    background-color: #15803d;
-    transform: translateY(-2px);
-}
-        /* Custom Scrollbar & Smooth Transitions */
+        .walkon-sticky-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #16a34a;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 12px 18px;
+            border-radius: 9999px;
+            box-shadow: 0 12px 24px rgba(22, 163, 74, 0.35), 0 4px 10px rgba(0, 0, 0, 0.18);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .walkon-sticky-whatsapp:hover {
+            background-color: #15803d;
+            transform: translateY(-2px);
+        }
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -96,7 +96,7 @@
                     <i class="fa-regular fa-envelope"></i> <span id="topEmailDisplay">walkonshoes@gmail.com</span>
                 </a>
                 <span class="hidden sm:inline text-slate-600">|</span>
-                <button onclick="toggleCurrency()" class="bg-slate-800 hover:bg-slate-700 text-amber-400 font-semibold px-2.5 py-0.5 rounded-full text-xs transition cursor-pointer">
+                <button type="button" onclick="toggleCurrency()" class="bg-slate-800 hover:bg-slate-700 text-amber-400 font-semibold px-2.5 py-0.5 rounded-full text-xs transition cursor-pointer">
                     Currency: <span id="currencyLabel">PKR (Rs.)</span>
                 </button>
             </div>
@@ -107,7 +107,6 @@
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-[72px] py-3 gap-4">
-                <!-- Brand Logo -->
                 <a href="#home" class="flex items-center gap-2.5 group shrink-0">
                     <div class="w-10 h-10 bg-brand-dark rounded-xl flex items-center justify-center text-amber-400 shadow-md group-hover:bg-amber-600 group-hover:text-white transition">
                         <i class="fa-solid fa-shoe-prints text-lg -rotate-12"></i>
@@ -118,7 +117,6 @@
                     </div>
                 </a>
 
-                <!-- Desktop Navigation Links -->
                 <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-700">
                     <a href="#home" class="hover:text-amber-600 transition">Home</a>
                     <a href="#collections" class="hover:text-amber-600 transition">Collection</a>
@@ -127,29 +125,24 @@
                     <a href="#contact" class="hover:text-amber-600 transition">Contact</a>
                 </nav>
 
-                <!-- Search & Cart Controls (Admin Button Hidden from Visitors) -->
                 <div class="flex items-center gap-2 sm:gap-3">
-                    <!-- Search Input -->
                     <div class="relative hidden md:block">
                         <input type="text" id="desktopSearch" oninput="handleSearch(this.value)" placeholder="Search shoes, sneakers..." class="w-48 xl:w-64 pl-9 pr-3 py-2 bg-slate-100 border border-transparent focus:border-amber-500 focus:bg-white rounded-xl text-sm outline-none transition">
                         <i class="fa-solid fa-magnifying-glass text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 text-xs"></i>
                     </div>
 
-                    <!-- Shopping Cart Button -->
-                    <button onclick="openCartDrawer()" aria-label="Open Cart" class="relative flex items-center gap-2 bg-brand-dark hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-xl shadow-sm transition cursor-pointer">
+                    <button type="button" onclick="openCartDrawer()" aria-label="Open Cart" class="relative flex items-center gap-2 bg-brand-dark hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-xl shadow-sm transition cursor-pointer">
                         <i class="fa-solid fa-bag-shopping text-amber-400"></i>
                         <span class="hidden sm:inline">Cart</span>
                         <span id="cartCountBadge" class="bg-amber-500 text-slate-950 font-extrabold text-[11px] px-1.5 py-0.5 rounded-full min-w-[20px] text-center">0</span>
                     </button>
 
-                    <!-- Mobile Menu Toggle -->
-                    <button onclick="toggleMobileMenu()" aria-label="Toggle Menu" class="lg:hidden p-2.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer">
+                    <button type="button" onclick="toggleMobileMenu()" aria-label="Toggle Menu" class="lg:hidden p-2.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer">
                         <i class="fa-solid fa-bars text-lg"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Mobile Search & Dropdown Menu -->
             <div id="mobileMenu" class="hidden lg:hidden pb-4 pt-2 border-t border-slate-100 space-y-3">
                 <div class="relative">
                     <input type="text" id="mobileSearch" oninput="handleSearch(this.value)" placeholder="Search shoes, sneakers, formal..." class="w-full pl-9 pr-3 py-2.5 bg-slate-100 rounded-xl text-sm outline-none focus:ring-2 focus:ring-amber-500">
@@ -167,11 +160,9 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative bg-brand-dark text-white overflow-hidden">
-        <!-- Subtle Background Pattern -->
         <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:24px_24px]"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                <!-- Hero Text -->
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                     <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold px-3.5 py-1.5 rounded-full">
                         <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
@@ -191,7 +182,6 @@
                             <i class="fa-solid fa-boxes-stacked text-amber-400 mr-1.5"></i> Wholesale &amp; Factory Orders
                         </a>
                     </div>
-                    <!-- Trust Metrics -->
                     <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
                         <div>
                             <p class="font-display text-2xl sm:text-3xl font-extrabold text-white">100%</p>
@@ -208,11 +198,10 @@
                     </div>
                 </div>
 
-                <!-- Hero Showcase Card -->
                 <div class="lg:col-span-5">
                     <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 p-4 sm:p-6 rounded-3xl border border-slate-700/80 shadow-2xl">
                         <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-800">
-                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80" alt="WalkOn Signature Runner" onerror="this.src='https://placehold.co/800x600/1e293b/f59e0b?text=WalkOn+Signature+Series'" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80" alt="WalkOn Signature Runner" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e293b/f59e0b?text=WalkOn+Signature+Series'" class="w-full h-full object-cover">
                             <span class="absolute top-3 left-3 bg-brand-dark/90 backdrop-blur text-amber-400 text-xs font-bold px-3 py-1 rounded-full">
                                 Signature Series
                             </span>
@@ -278,7 +267,6 @@
 
     <!-- Product Catalog Section -->
     <section id="collections" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div>
                 <span class="text-amber-600 font-bold text-xs uppercase tracking-wider">WalkOn Catalog</span>
@@ -286,9 +274,8 @@
                 <p class="text-slate-600 text-sm mt-1">Direct factory comfort — browse by category, select your size, and order via Cart or WhatsApp.</p>
             </div>
 
-            <!-- Sort Control -->
             <div class="flex flex-wrap items-center gap-3">
-                <select id="sortSelect" onchange="renderProducts()" class="bg-white border border-slate-200 text-slate-700 text-sm rounded-xl px-3.5 py-2.5 outline-none focus:border-amber-500">
+                <select id="sortSelect" onchange="renderProducts()" aria-label="Sort footwear" class="bg-white border border-slate-200 text-slate-700 text-sm rounded-xl px-3.5 py-2.5 outline-none focus:border-amber-500">
                     <option value="featured">Sort: Featured</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
@@ -297,24 +284,16 @@
             </div>
         </div>
 
-        <!-- Dynamic Category Tabs -->
-        <div id="categoryTabs" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-6">
-            <!-- Populated dynamically via JS -->
-        </div>
+        <div id="categoryTabs" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-6"></div>
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 
-        <!-- Product Grid -->
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <!-- Product cards rendered dynamically via JS -->
-        </div>
-
-        <!-- Empty State -->
         <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300">
             <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <i class="fa-solid fa-shoe-prints text-2xl"></i>
             </div>
             <h3 class="font-display font-bold text-lg text-slate-900">No shoes found in this view</h3>
             <p class="text-slate-500 text-sm mt-1 max-w-md mx-auto">Try clearing your search filter or add a new shoe product to this category.</p>
-            <button onclick="resetFilters()" class="mt-4 px-5 py-2.5 bg-brand-dark text-white text-sm font-semibold rounded-xl hover:bg-slate-800 transition cursor-pointer">
+            <button type="button" onclick="resetFilters()" class="mt-4 px-5 py-2.5 bg-brand-dark text-white text-sm font-semibold rounded-xl hover:bg-slate-800 transition cursor-pointer">
                 Show All Shoes
             </button>
         </div>
@@ -324,7 +303,6 @@
     <section id="manufacturing" class="bg-brand-dark text-white py-16 sm:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <!-- Left Info -->
                 <div class="lg:col-span-6 space-y-6">
                     <span class="inline-block bg-amber-500/15 text-amber-400 text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full">
                         WalkOn Manufacturing Unit
@@ -360,7 +338,6 @@
                     </div>
                 </div>
 
-                <!-- Right Wholesale Inquiry Form -->
                 <div class="lg:col-span-6">
                     <div class="bg-white text-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl">
                         <h3 class="font-display text-2xl font-bold text-slate-900">Request Factory Quote / Catalog</h3>
@@ -369,18 +346,18 @@
                         <form id="wholesaleForm" onsubmit="submitWholesaleInquiry(event)" class="space-y-4 mt-6">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Your Name / Business *</label>
+                                    <label for="inqName" class="block text-xs font-semibold text-slate-700 mb-1">Your Name / Business *</label>
                                     <input type="text" id="inqName" required placeholder="e.g. Ali Traders" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Phone / WhatsApp *</label>
+                                    <label for="inqPhone" class="block text-xs font-semibold text-slate-700 mb-1">Phone / WhatsApp *</label>
                                     <input type="tel" id="inqPhone" required placeholder="+92 300 1234567" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Order Type</label>
+                                    <label for="inqType" class="block text-xs font-semibold text-slate-700 mb-1">Order Type</label>
                                     <select id="inqType" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                                         <option value="Wholesale Ready Stock">Wholesale Ready Stock</option>
                                         <option value="Custom Brand Manufacturing (OEM)">Custom Brand Manufacturing (OEM)</option>
@@ -389,13 +366,13 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Estimated Pairs (Quantity)</label>
+                                    <label for="inqQty" class="block text-xs font-semibold text-slate-700 mb-1">Estimated Pairs (Quantity)</label>
                                     <input type="text" id="inqQty" placeholder="e.g. 50 Pairs / 500 Pairs" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                                 </div>
                             </div>
 
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Details / Requirements *</label>
+                                <label for="inqMessage" class="block text-xs font-semibold text-slate-700 mb-1">Details / Requirements *</label>
                                 <textarea id="inqMessage" rows="3" required placeholder="Tell us about shoe types, sizes, or custom branding needs..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500"></textarea>
                             </div>
 
@@ -418,7 +395,6 @@
     <footer id="contact" class="bg-slate-950 text-slate-400 pt-14 pb-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800/80">
-                <!-- Brand Col -->
                 <div class="space-y-4">
                     <div class="flex items-center gap-2.5">
                         <div class="w-9 h-9 bg-amber-500 rounded-xl flex items-center justify-center text-slate-950">
@@ -445,7 +421,6 @@
                     </div>
                 </div>
 
-                <!-- Quick Links -->
                 <div>
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
                     <ul class="space-y-2.5 text-sm">
@@ -456,15 +431,11 @@
                     </ul>
                 </div>
 
-                <!-- Categories -->
                 <div>
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Popular Categories</h4>
-                    <ul id="footerCategories" class="space-y-2.5 text-sm">
-                        <!-- Dynamically synced -->
-                    </ul>
+                    <ul id="footerCategories" class="space-y-2.5 text-sm"></ul>
                 </div>
 
-                <!-- Contact Info -->
                 <div>
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Contact WalkOn</h4>
                     <ul class="space-y-3 text-sm">
@@ -474,7 +445,7 @@
                         </li>
                         <li class="flex items-start gap-2.5">
                             <i class="fa-brands fa-whatsapp text-emerald-500 mt-1"></i>
-                            <span id="footerWhatsappDisplay">+92 300 0000000 (Configure in Admin)</span>
+                            <span id="footerWhatsappDisplay">+92 334 55854484</span>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <i class="fa-solid fa-location-dot text-amber-500 mt-1"></i>
@@ -491,38 +462,31 @@
         </div>
     </footer>
 
-    <!-- ===================================================================== -->
     <!-- SHOPPING CART DRAWER -->
-    <!-- ===================================================================== -->
     <div id="cartDrawer" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex justify-end">
         <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between">
-            <!-- Cart Header -->
             <div class="bg-brand-dark text-white px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
                     <i class="fa-solid fa-bag-shopping text-amber-400 text-lg"></i>
                     <h3 class="font-display font-bold text-lg">Your WalkOn Cart</h3>
                 </div>
-                <button onclick="closeCartDrawer()" aria-label="Close Cart" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition cursor-pointer">
+                <button type="button" onclick="closeCartDrawer()" aria-label="Close Cart" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
-            <!-- Cart Items -->
-            <div id="cartItemsContainer" class="p-5 flex-1 overflow-y-auto space-y-3">
-                <!-- Rendered via JS -->
-            </div>
+            <div id="cartItemsContainer" class="p-5 flex-1 overflow-y-auto space-y-3"></div>
 
-            <!-- Cart Footer / Checkout -->
             <div id="cartFooter" class="p-5 bg-slate-50 border-t border-slate-200 space-y-3">
                 <div class="flex justify-between items-center text-sm font-bold text-slate-900">
                     <span>Total Amount:</span>
                     <span id="cartTotalDisplay" class="font-display text-xl text-amber-600">Rs. 0</span>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    <button onclick="checkoutCartWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+                    <button type="button" onclick="checkoutCartWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-brands fa-whatsapp text-base"></i> Order on WhatsApp
                     </button>
-                    <button onclick="checkoutCartEmail()" class="bg-brand-dark hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+                    <button type="button" onclick="checkoutCartEmail()" class="bg-brand-dark hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-regular fa-envelope text-amber-400"></i> Order via Email
                     </button>
                 </div>
@@ -530,16 +494,14 @@
         </div>
     </div>
 
-    <!-- ===================================================================== -->
     <!-- SECRET ADMIN PASSWORD LOCK MODAL -->
-    <!-- ===================================================================== -->
     <div id="adminLockModal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-200">
             <div class="flex justify-between items-start">
                 <div class="w-12 h-12 rounded-2xl bg-brand-dark text-amber-400 flex items-center justify-center text-xl shadow-md">
                     <i class="fa-solid fa-lock"></i>
                 </div>
-                <button onclick="closeAdminLockModal()" aria-label="Close Lock Modal" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition cursor-pointer">
+                <button type="button" onclick="closeAdminLockModal()" aria-label="Close Lock Modal" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -551,7 +513,7 @@
 
             <form onsubmit="verifyAdminPassword(event)" class="mt-5 space-y-4">
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Admin Password</label>
+                    <label for="adminPasswordInput" class="block text-xs font-semibold text-slate-700 mb-1">Admin Password</label>
                     <div class="relative">
                         <input type="password" id="adminPasswordInput" required placeholder="Enter password..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500 pr-10">
                         <button type="button" onclick="togglePasswordVisibility()" aria-label="Toggle Password" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 text-xs cursor-pointer">
@@ -570,13 +532,10 @@
         </div>
     </div>
 
-    <!-- ===================================================================== -->
     <!-- PRODUCT DETAILS MODAL -->
-    <!-- ===================================================================== -->
     <div id="productDetailModal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-slate-200 my-auto">
             <div class="grid grid-cols-1 md:grid-cols-2">
-                <!-- Image Side -->
                 <div class="bg-slate-100 relative min-h-[280px] md:min-h-[420px] flex flex-col justify-between">
                     <div class="relative flex-1 overflow-hidden">
                         <img id="detailImage" src="" alt="Shoe Detail" class="w-full h-full object-cover">
@@ -584,12 +543,11 @@
                     </div>
                     <div id="detailThumbnails" class="hidden p-3 bg-white/90 backdrop-blur border-t border-slate-200 flex items-center gap-2 overflow-x-auto no-scrollbar"></div>
                 </div>
-                <!-- Info Side -->
                 <div class="p-6 sm:p-8 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-start gap-2">
                             <span id="detailCategory" class="text-xs font-bold uppercase tracking-wider text-amber-600"></span>
-                            <button onclick="closeProductDetailModal()" aria-label="Close Details" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition cursor-pointer">
+                            <button type="button" onclick="closeProductDetailModal()" aria-label="Close Details" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition cursor-pointer">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
                         </div>
@@ -598,7 +556,6 @@
 
                         <p id="detailDescription" class="text-slate-600 text-sm leading-relaxed mt-4"></p>
 
-                        <!-- Specifications -->
                         <div class="mt-5 pt-4 border-t border-slate-100 space-y-2.5 text-xs">
                             <div class="flex justify-between">
                                 <span class="text-slate-500 font-medium">Upper Material:</span>
@@ -614,25 +571,21 @@
                             </div>
                         </div>
 
-                        <!-- Available Sizes -->
                         <div class="mt-5">
                             <span class="block text-xs font-semibold text-slate-700 mb-2">Select Size (EU / UK):</span>
-                            <div id="detailSizes" class="flex flex-wrap gap-2">
-                                <!-- Size pills -->
-                            </div>
+                            <div id="detailSizes" class="flex flex-wrap gap-2"></div>
                         </div>
                     </div>
 
-                    <!-- Order Actions -->
                     <div class="mt-6 pt-4 border-t border-slate-100 flex flex-col gap-2.5">
-                        <button id="detailAddToCartBtn" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 px-4 rounded-xl text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+                        <button type="button" id="detailAddToCartBtn" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 px-4 rounded-xl text-sm transition flex items-center justify-center gap-2 cursor-pointer">
                             <i class="fa-solid fa-bag-shopping"></i> Add to Cart
                         </button>
                         <div class="flex flex-col sm:flex-row gap-2.5">
-                            <button id="detailWhatsAppBtn" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+                            <button type="button" id="detailWhatsAppBtn" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 cursor-pointer">
                                 <i class="fa-brands fa-whatsapp text-base"></i> Direct WhatsApp
                             </button>
-                            <button id="detailEmailBtn" class="flex-1 bg-brand-dark hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+                            <button type="button" id="detailEmailBtn" class="flex-1 bg-brand-dark hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 cursor-pointer">
                                 <i class="fa-regular fa-envelope text-amber-400"></i> Email Inquiry
                             </button>
                         </div>
@@ -642,12 +595,9 @@
         </div>
     </div>
 
-    <!-- ===================================================================== -->
     <!-- SELLER ADMIN / CATALOG MANAGER MODAL -->
-    <!-- ===================================================================== -->
     <div id="adminModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-4xl w-full shadow-2xl border border-slate-200 overflow-hidden my-auto max-h-[92vh] flex flex-col">
-            <!-- Admin Modal Header -->
             <div class="bg-brand-dark text-white px-6 py-4 flex items-center justify-between shrink-0">
                 <div class="flex items-center gap-3">
                     <div class="w-9 h-9 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold">
@@ -658,31 +608,27 @@
                         <p class="text-xs text-slate-400">Add shoes, manage categories, update contact info, or export site code</p>
                     </div>
                 </div>
-                <button onclick="closeAdminModal()" aria-label="Close Admin" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition cursor-pointer">
+                <button type="button" onclick="closeAdminModal()" aria-label="Close Admin" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
-            <!-- Admin Tabs -->
             <div class="bg-slate-100 px-6 py-2.5 border-b border-slate-200 flex gap-2 overflow-x-auto shrink-0">
-                <button onclick="switchAdminTab('add-product')" id="tab-add-product" class="admin-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-dark text-white transition cursor-pointer">
+                <button type="button" onclick="switchAdminTab('add-product')" id="tab-add-product" class="admin-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-dark text-white transition cursor-pointer">
                     <i class="fa-solid fa-plus mr-1"></i> Add / Edit Shoe
                 </button>
-                <button onclick="switchAdminTab('manage-categories')" id="tab-manage-categories" class="admin-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-white transition cursor-pointer">
+                <button type="button" onclick="switchAdminTab('manage-categories')" id="tab-manage-categories" class="admin-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-white transition cursor-pointer">
                     <i class="fa-solid fa-folder-plus mr-1"></i> Categories
                 </button>
-                <button onclick="switchAdminTab('manage-list')" id="tab-manage-list" class="admin-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-white transition cursor-pointer">
+                <button type="button" onclick="switchAdminTab('manage-list')" id="tab-manage-list" class="admin-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-white transition cursor-pointer">
                     <i class="fa-solid fa-list mr-1"></i> All Shoes (<span id="adminProductCount">0</span>)
                 </button>
-                <button onclick="switchAdminTab('store-settings')" id="tab-store-settings" class="admin-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-white transition cursor-pointer">
+                <button type="button" onclick="switchAdminTab('store-settings')" id="tab-store-settings" class="admin-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-white transition cursor-pointer">
                     <i class="fa-solid fa-gear mr-1"></i> Contact &amp; Export Site
                 </button>
             </div>
 
-            <!-- Admin Modal Body -->
             <div class="p-6 overflow-y-auto space-y-6 flex-1">
-
-                <!-- TAB 1: ADD / EDIT SHOE PRODUCT -->
                 <div id="panel-add-product" class="admin-panel space-y-4">
                     <div class="flex justify-between items-center">
                         <h4 id="productFormHeading" class="font-display font-bold text-lg text-slate-900">Add New Shoe to Store</h4>
@@ -696,24 +642,22 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Shoe Name / Title *</label>
+                                <label for="prodTitle" class="block text-xs font-semibold text-slate-700 mb-1">Shoe Name / Title *</label>
                                 <input type="text" id="prodTitle" required placeholder="e.g. WalkOn Classic Oxford" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Category *</label>
-                                <select id="prodCategory" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
-                                    <!-- Populated via JS -->
-                                </select>
+                                <label for="prodCategory" class="block text-xs font-semibold text-slate-700 mb-1">Category *</label>
+                                <select id="prodCategory" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500"></select>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Price in PKR (Rs.) *</label>
+                                <label for="prodPrice" class="block text-xs font-semibold text-slate-700 mb-1">Price in PKR (Rs.) *</label>
                                 <input type="number" id="prodPrice" required min="1" placeholder="e.g. 3499" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Badge / Tag</label>
+                                <label for="prodBadge" class="block text-xs font-semibold text-slate-700 mb-1">Badge / Tag</label>
                                 <select id="prodBadge" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                                     <option value="New Arrival">New Arrival</option>
                                     <option value="Best Seller">Best Seller</option>
@@ -723,30 +667,29 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Article / SKU Code</label>
+                                <label for="prodSku" class="block text-xs font-semibold text-slate-700 mb-1">Article / SKU Code</label>
                                 <input type="text" id="prodSku" placeholder="e.g. WO-105" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Available Sizes (Comma separated) *</label>
+                                <label for="prodSizes" class="block text-xs font-semibold text-slate-700 mb-1">Available Sizes (Comma separated) *</label>
                                 <input type="text" id="prodSizes" required value="40, 41, 42, 43, 44" placeholder="e.g. 40, 41, 42, 43, 44" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Upper Material</label>
+                                <label for="prodMaterial" class="block text-xs font-semibold text-slate-700 mb-1">Upper Material</label>
                                 <input type="text" id="prodMaterial" placeholder="e.g. Genuine Leather / Breathable Mesh" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Sole Type</label>
+                                <label for="prodSole" class="block text-xs font-semibold text-slate-700 mb-1">Sole Type</label>
                                 <input type="text" id="prodSole" placeholder="e.g. Soft EVA / TPR Non-Slip" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                             </div>
                         </div>
 
-                        <!-- Multi-Photo Upload OR Multiple Image URLs -->
                         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
                             <div class="flex items-center justify-between">
-                                <label class="block text-xs font-bold text-slate-800">Shoe Photos (Upload Multiple Photos OR Add Multiple Image Links)</label>
+                                <label for="prodImageFile" class="block text-xs font-bold text-slate-800">Shoe Photos (Upload Multiple Photos OR Add Multiple Image Links)</label>
                                 <span id="multiImageCountLabel" class="text-[11px] font-bold text-amber-700">0 photos</span>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-start">
@@ -755,14 +698,13 @@
                                     <p class="text-[11px] text-slate-500 mt-1">Select 1 or more photos together or in batches. First photo is main cover.</p>
                                 </div>
                                 <div class="flex gap-2">
-                                    <input type="url" id="prodImageUrl" onkeydown="if(event.key==='Enter'){event.preventDefault();addImageUrlToGallery();}" placeholder="Paste image URL (https://...)" class="flex-1 px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs outline-none focus:border-amber-500">
+                                    <input type="url" id="prodImageUrl" aria-label="Paste image URL" onkeydown="if(event.key==='Enter'){event.preventDefault();addImageUrlToGallery();}" placeholder="Paste image URL (https://...)" class="flex-1 px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs outline-none focus:border-amber-500">
                                     <button type="button" onclick="addImageUrlToGallery()" class="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl shrink-0 cursor-pointer">
                                         + Add
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- Scrollable Multi-Photo Preview Strip -->
                             <div id="imagePreviewContainer" class="hidden pt-2 border-t border-slate-200/80">
                                 <div class="flex items-center justify-between mb-2">
                                     <span class="text-[11px] text-emerald-700 font-semibold"><i class="fa-solid fa-check-circle"></i> Photos ready (click "Cover" to set main photo)</span>
@@ -773,7 +715,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Description &amp; Comfort Details *</label>
+                            <label for="prodDescription" class="block text-xs font-semibold text-slate-700 mb-1">Description &amp; Comfort Details *</label>
                             <textarea id="prodDescription" rows="2" required placeholder="Describe comfort, stitching quality, occasion, and durability..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500"></textarea>
                         </div>
 
@@ -785,7 +727,6 @@
                     </form>
                 </div>
 
-                <!-- TAB 2: MANAGE CATEGORIES -->
                 <div id="panel-manage-categories" class="admin-panel hidden space-y-5">
                     <div>
                         <h4 class="font-display font-bold text-lg text-slate-900">Manage Shoe Categories</h4>
@@ -793,31 +734,25 @@
                     </div>
 
                     <form onsubmit="addCategory(event)" class="flex gap-2">
-                        <input type="text" id="newCategoryInput" required placeholder="Enter new category name..." class="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
+                        <input type="text" id="newCategoryInput" aria-label="New category name" required placeholder="Enter new category name..." class="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                         <button type="submit" class="bg-brand-dark hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition cursor-pointer">
                             + Add Category
                         </button>
                     </form>
 
-                    <div id="adminCategoryList" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                        <!-- Rendered via JS -->
-                    </div>
+                    <div id="adminCategoryList" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
                 </div>
 
-                <!-- TAB 3: ALL SHOES LIST (EDIT / DELETE) -->
                 <div id="panel-manage-list" class="admin-panel hidden space-y-4">
                     <div class="flex justify-between items-center">
                         <h4 class="font-display font-bold text-lg text-slate-900">Current Store Inventory</h4>
-                        <button onclick="resetToDefaultData()" class="text-xs text-rose-600 hover:underline font-semibold cursor-pointer">
+                        <button type="button" onclick="resetToDefaultData()" class="text-xs text-rose-600 hover:underline font-semibold cursor-pointer">
                             Reset Sample Data
                         </button>
                     </div>
-                    <div id="adminProductList" class="space-y-3">
-                        <!-- Rendered via JS -->
-                    </div>
+                    <div id="adminProductList" class="space-y-3"></div>
                 </div>
 
-                <!-- TAB 4: STORE CONTACT SETTINGS & STATIC HOSTING EXPORT -->
                 <div id="panel-store-settings" class="admin-panel hidden space-y-6">
                     <div>
                         <h4 class="font-display font-bold text-lg text-slate-900">WalkOn Contact &amp; WhatsApp Settings</h4>
@@ -827,26 +762,26 @@
                     <form onsubmit="saveStoreSettings(event)" class="space-y-4 bg-slate-50 p-4 rounded-2xl border border-slate-200">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Official Gmail Address</label>
+                                <label for="setEmail" class="block text-xs font-semibold text-slate-700 mb-1">Official Gmail Address</label>
                                 <input type="email" id="setEmail" required value="walkonshoes@gmail.com" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">WhatsApp Number (with Country Code, no +)</label>
-                                <input type="text" id="setWhatsapp" placeholder="e.g. 923001234567" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
+                                <label for="setWhatsapp" class="block text-xs font-semibold text-slate-700 mb-1">WhatsApp Number (with Country Code, no +)</label>
+                                <input type="text" id="setWhatsapp" placeholder="e.g. 9233455854484" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div class="sm:col-span-2">
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Factory / Shop Address</label>
+                                <label for="setAddress" class="block text-xs font-semibold text-slate-700 mb-1">Factory / Shop Address</label>
                                 <input type="text" id="setAddress" value="Footwear Industrial Area, Punjab, Pakistan" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">USD Rate (1 USD in PKR)</label>
+                                <label for="setUsdRate" class="block text-xs font-semibold text-slate-700 mb-1">USD Rate (1 USD in PKR)</label>
                                 <input type="number" id="setUsdRate" min="1" value="278" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                             </div>
                         </div>
                         <div class="pt-2 border-t border-slate-200">
-                            <label class="block text-xs font-bold text-slate-800 mb-1"><i class="fa-solid fa-key text-amber-600 mr-1"></i> Change Admin Password</label>
+                            <label for="setAdminPassword" class="block text-xs font-bold text-slate-800 mb-1"><i class="fa-solid fa-key text-amber-600 mr-1"></i> Change Admin Password</label>
                             <input type="text" id="setAdminPassword" required placeholder="Set new admin password..." class="w-full sm:w-1/2 px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-sm outline-none focus:border-amber-500">
                             <p class="text-[11px] text-slate-500 mt-1">Remember to click "Download Updated index.html" below after changing your password so it saves permanently.</p>
                         </div>
@@ -855,7 +790,6 @@
                         </button>
                     </form>
 
-                    <!-- Free Hosting & Permanent Save Box -->
                     <div class="bg-amber-50 border border-amber-200 p-5 rounded-2xl space-y-3">
                         <div class="flex items-start gap-3">
                             <i class="fa-solid fa-cloud-arrow-up text-amber-600 text-xl mt-0.5"></i>
@@ -876,25 +810,140 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- Custom Toast Notification (No alert() used) -->
-    <div id="toastBox" class="fixed bottom-5 right-5 z-50 hidden transform transition-all duration-300">
+    <!-- Custom Toast Notification -->
+    <div id="toastBox" class="fixed bottom-20 right-5 z-50 hidden transform transition-all duration-300">
         <div class="bg-brand-dark text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700 flex items-center gap-3 text-sm font-medium">
             <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
             <span id="toastMessage">Action completed!</span>
         </div>
     </div>
 
-    <!-- ===================================================================== -->
-    <!-- APPLICATION LOGIC (Embedded State + LocalStorage + Static Exporter) -->
-    <!-- ===================================================================== -->
-    <script id="walkon-data-script">
-        // Default Store State (Updated automatically when exporting standalone HTML)
-        const DEFAULT_STORE_DATA = {
+    <!-- Embedded JSON Store Data (Safe from JS template string newline issues) -->
+    <script id="walkon-store-json" type="application/json">
+{
+    "settings": {
+        "email": "walkonshoes@gmail.com",
+        "whatsapp": "9233455854484",
+        "address": "Footwear Industrial Area, Punjab, Pakistan",
+        "pkrToUsdRate": 278,
+        "adminPassword": "walkon2026"
+    },
+    "categories": [
+        "Sneakers & Joggers",
+        "Formal Leather",
+        "Casual Loafers",
+        "Sports & Running"
+    ],
+    "products": [
+        {
+            "id": "wo-1",
+            "title": "WalkOn AeroGlide Runner",
+            "category": "Sneakers & Joggers",
+            "pricePkr": 3850,
+            "badge": "Best Seller",
+            "sku": "WO-SNK-01",
+            "sizes": "40, 41, 42, 43, 44, 45",
+            "material": "Engineered Breathable Knit Mesh",
+            "sole": "Ultra-Light Phylon + EVA Cushion",
+            "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+            "images": [
+                "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80"
+            ],
+            "description": "Designed for effortless daily movement, gym sessions, and long walks with shock-absorbing heel support."
+        },
+        {
+            "id": "wo-2",
+            "title": "WalkOn Executive Oxford",
+            "category": "Formal Leather",
+            "pricePkr": 5200,
+            "badge": "Factory Direct",
+            "sku": "WO-FRM-04",
+            "sizes": "40, 41, 42, 43, 44",
+            "material": "Full-Grain Soft Cow Leather",
+            "sole": "Anti-Slip TPR Welt Sole",
+            "image": "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=800&q=80",
+            "images": [
+                "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80"
+            ],
+            "description": "Hand-finished executive dress shoe featuring cushioned leather lining for boardroom comfort and formal events."
+        },
+        {
+            "id": "wo-3",
+            "title": "WalkOn Urban Drift Loafer",
+            "category": "Casual Loafers",
+            "pricePkr": 3400,
+            "badge": "New Arrival",
+            "sku": "WO-CAS-09",
+            "sizes": "40, 41, 42, 43, 44",
+            "material": "Premium Matte Suede Microfiber",
+            "sole": "Flexible Soft Rubber Grip",
+            "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80",
+            "images": [
+                "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80"
+            ],
+            "description": "Slip-on everyday casual comfort with breathable inner padding and timeless street style."
+        },
+        {
+            "id": "wo-4",
+            "title": "WalkOn Velocity Pro Trainer",
+            "category": "Sports & Running",
+            "pricePkr": 4350,
+            "badge": "Wholesale Ready",
+            "sku": "WO-SPT-02",
+            "sizes": "40, 41, 42, 43, 44, 45",
+            "material": "High-Airflow Jacquard Mesh",
+            "sole": "Dual-Density Shock-Absorb Phylon",
+            "image": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80",
+            "images": [
+                "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80"
+            ],
+            "description": "Engineered for high-impact running, athletic training, and all-day ergonomic arch support."
+        },
+        {
+            "id": "wo-5",
+            "title": "WalkOn StreetCourt White",
+            "category": "Sneakers & Joggers",
+            "pricePkr": 4100,
+            "badge": "New Arrival",
+            "sku": "WO-SNK-08",
+            "sizes": "40, 41, 42, 43, 44",
+            "material": "Stain-Resistant Smooth Action Leather",
+            "sole": "Stitched Cup-Sole Rubber",
+            "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80",
+            "images": [
+                "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80"
+            ],
+            "description": "Crisp minimalist court sneaker built with reinforced stitching and cloud-soft collar padding."
+        },
+        {
+            "id": "wo-6",
+            "title": "WalkOn Heritage Monk Strap",
+            "category": "Formal Leather",
+            "pricePkr": 5600,
+            "badge": "Factory Direct",
+            "sku": "WO-FRM-07",
+            "sizes": "40, 41, 42, 43, 44",
+            "material": "Burnished Calfskin Leather",
+            "sole": "Stitched Leather & Rubber Grip",
+            "image": "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80",
+            "images": [
+                "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80"
+            ],
+            "description": "Double-buckle formal masterpiece crafted in our leather division for weddings and executive wear."
+        }
+    ]
+}
+    </script>
+
+    <!-- APPLICATION LOGIC -->
+    <script>
+        const FALLBACK_STORE_DATA = {
             settings: {
                 email: "walkonshoes@gmail.com",
                 whatsapp: "9233455854484",
@@ -902,124 +951,37 @@
                 pkrToUsdRate: 278,
                 adminPassword: "walkon2026"
             },
-            categories: [
-                "Sneakers & Joggers",
-                "Formal Leather",
-                "Casual Loafers",
-                "Sports & Running"
-            ],
-            products: [
-                {
-                    id: "wo-1",
-                    title: "WalkOn AeroGlide Runner",
-                    category: "Sneakers & Joggers",
-                    pricePkr: 3850,
-                    badge: "Best Seller",
-                    sku: "WO-SNK-01",
-                    sizes: "40, 41, 42, 43, 44, 45",
-                    material: "Engineered Breathable Knit Mesh",
-                    sole: "Ultra-Light Phylon + EVA Cushion",
-                    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
-                    images: [
-                        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
-                        "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80"
-                    ],
-                    description: "Designed for effortless daily movement, gym sessions, and long walks with shock-absorbing heel support."
-                },
-                {
-                    id: "wo-2",
-                    title: "WalkOn Executive Oxford",
-                    category: "Formal Leather",
-                    pricePkr: 5200,
-                    badge: "Factory Direct",
-                    sku: "WO-FRM-04",
-                    sizes: "40, 41, 42, 43, 44",
-                    material: "Full-Grain Soft Cow Leather",
-                    sole: "Anti-Slip TPR Welt Sole",
-                    image: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=800&q=80",
-                    images: [
-                        "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=800&q=80",
-                        "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80"
-                    ],
-                    description: "Hand-finished executive dress shoe featuring cushioned leather lining for boardroom comfort and formal events."
-                },
-                {
-                    id: "wo-3",
-                    title: "WalkOn Urban Drift Loafer",
-                    category: "Casual Loafers",
-                    pricePkr: 3400,
-                    badge: "New Arrival",
-                    sku: "WO-CAS-09",
-                    sizes: "40, 41, 42, 43, 44",
-                    material: "Premium Matte Suede Microfiber",
-                    sole: "Flexible Soft Rubber Grip",
-                    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80",
-                    images: [
-                        "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80"
-                    ],
-                    description: "Slip-on everyday casual comfort with breathable inner padding and timeless street style."
-                },
-                {
-                    id: "wo-4",
-                    title: "WalkOn Velocity Pro Trainer",
-                    category: "Sports & Running",
-                    pricePkr: 4350,
-                    badge: "Wholesale Ready",
-                    sku: "WO-SPT-02",
-                    sizes: "40, 41, 42, 43, 44, 45",
-                    material: "High-Airflow Jacquard Mesh",
-                    sole: "Dual-Density Shock-Absorb Phylon",
-                    image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80",
-                    images: [
-                        "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80"
-                    ],
-                    description: "Engineered for high-impact running, athletic training, and all-day ergonomic arch support."
-                },
-                {
-                    id: "wo-5",
-                    title: "WalkOn StreetCourt White",
-                    category: "Sneakers & Joggers",
-                    pricePkr: 4100,
-                    badge: "New Arrival",
-                    sku: "WO-SNK-08",
-                    sizes: "40, 41, 42, 43, 44",
-                    material: "Stain-Resistant Smooth Action Leather",
-                    sole: "Stitched Cup-Sole Rubber",
-                    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80",
-                    images: [
-                        "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80"
-                    ],
-                    description: "Crisp minimalist court sneaker built with reinforced stitching and cloud-soft collar padding."
-                },
-                {
-                    id: "wo-6",
-                    title: "WalkOn Heritage Monk Strap",
-                    category: "Formal Leather",
-                    pricePkr: 5600,
-                    badge: "Factory Direct",
-                    sku: "WO-FRM-07",
-                    sizes: "40, 41, 42, 43, 44",
-                    material: "Burnished Calfskin Leather",
-                    sole: "Stitched Leather & Rubber Grip",
-                    image: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80",
-                    images: [
-                        "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80"
-                    ],
-                    description: "Double-buckle formal masterpiece crafted in our leather division for weddings and executive wear."
-                }
-            ]
+            categories: ["Sneakers & Joggers", "Formal Leather", "Casual Loafers", "Sports & Running"],
+            products: []
         };
 
+        function getEmbeddedStoreData() {
+            try {
+                const el = document.getElementById("walkon-store-json");
+                if (el && el.textContent && el.textContent.trim()) {
+                    const parsed = JSON.parse(el.textContent.trim());
+                    if (parsed && Array.isArray(parsed.products) && Array.isArray(parsed.categories)) {
+                        return parsed;
+                    }
+                }
+            } catch (e) {
+                console.warn("Embedded store JSON fallback:", e);
+            }
+            return JSON.parse(JSON.stringify(FALLBACK_STORE_DATA));
+        }
+
+        const DEFAULT_STORE_DATA = getEmbeddedStoreData();
         const STORAGE_KEY = "walkon_shoes_store_v2";
         const CART_STORAGE_KEY = "walkon_shoes_cart_v1";
         let storeData = loadStoreData();
         let cartItems = loadCartData();
         let activeCategory = "All";
         let searchQuery = "";
-        let currencyMode = "PKR"; // "PKR" or "USD"
+        let currencyMode = "PKR";
         let currentGalleryImages = [];
         let selectedDetailSize = "";
         let isAdminAuthenticated = false;
+        let pendingAdminTab = "add-product";
 
         function getProductImages(prod) {
             if (!prod) return [];
@@ -1029,7 +991,6 @@
             return prod.image ? [prod.image] : [];
         }
 
-        // Load from localStorage or fallback to embedded DEFAULT_STORE_DATA
         function loadStoreData() {
             try {
                 const saved = localStorage.getItem(STORAGE_KEY);
@@ -1069,7 +1030,6 @@
             }
         }
 
-        // Cart Storage Helpers
         function loadCartData() {
             try {
                 const saved = localStorage.getItem(CART_STORAGE_KEY);
@@ -1087,14 +1047,13 @@
             renderCart();
         }
 
-        // Format Price in PKR or USD
         function formatPrice(pkrAmount) {
             const num = Number(pkrAmount) || 0;
             if (currencyMode === "USD") {
                 const usd = (num / (storeData.settings.pkrToUsdRate || 278)).toFixed(2);
-                return `$${usd} USD`;
+                return "$" + usd + " USD";
             }
-            return `Rs. ${num.toLocaleString()}`;
+            return "Rs. " + num.toLocaleString();
         }
 
         function toggleCurrency() {
@@ -1104,7 +1063,6 @@
             renderCart();
         }
 
-        // Sync Contact Info across Header, Footer & Sticky WhatsApp Button
         function applyStoreSettingsToUI() {
             const { email, whatsapp, address, pkrToUsdRate, adminPassword } = storeData.settings;
             const cleanWa = (whatsapp || "9233455854484").replace(/[^0-9]/g, "");
@@ -1114,17 +1072,16 @@
             const footerEmailDisplay = document.getElementById("footerEmailDisplay");
             const stickyWaBtn = document.getElementById("stickyWhatsAppBtn");
 
-            if (topEmailLink) topEmailLink.href = `mailto:${email}`;
-            if (socialEmailLink) socialEmailLink.href = `mailto:${email}`;
-            if (footerEmailDisplay) footerEmailDisplay.href = `mailto:${email}`;
-            if (stickyWaBtn && cleanWa) stickyWaBtn.href = `https://wa.me/${cleanWa}`;
+            if (topEmailLink) topEmailLink.href = "mailto:" + email;
+            if (socialEmailLink) socialEmailLink.href = "mailto:" + email;
+            if (footerEmailDisplay) footerEmailDisplay.href = "mailto:" + email;
+            if (stickyWaBtn && cleanWa) stickyWaBtn.href = "https://wa.me/" + cleanWa;
 
             document.getElementById("topEmailDisplay").textContent = email;
             document.getElementById("footerEmailDisplay").textContent = email;
-            document.getElementById("footerWhatsappDisplay").textContent = cleanWa ? `+${cleanWa}` : "Not set";
+            document.getElementById("footerWhatsappDisplay").textContent = cleanWa ? "+" + cleanWa : "Not set";
             document.getElementById("footerAddressDisplay").textContent = address;
 
-            // Populate Admin Settings Inputs
             document.getElementById("setEmail").value = email;
             document.getElementById("setWhatsapp").value = cleanWa;
             document.getElementById("setAddress").value = address;
@@ -1136,10 +1093,9 @@
             if (event) event.preventDefault();
             const phone = (storeData.settings.whatsapp || "9233455854484").replace(/[^0-9]/g, "") || "9233455854484";
             const msg = "Assalam-o-Alaikum WalkOn Shoes! I would like to inquire about your footwear collection.";
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+            window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(msg), "_blank", "noopener,noreferrer");
         }
 
-        // Render Category Tabs & Dropdowns
         function renderCategories() {
             const tabsContainer = document.getElementById("categoryTabs");
             const footerCatContainer = document.getElementById("footerCategories");
@@ -1154,41 +1110,31 @@
                     ? storeData.products.length
                     : storeData.products.filter(p => p.category === cat).length;
 
-                return `
-                    <button onclick="selectCategory('${escapeJsArg(cat)}')"
-                        class="shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition cursor-pointer flex items-center gap-2 ${
-                            isActive
-                                ? 'bg-brand-dark text-white shadow-md'
-                                : 'bg-white text-slate-700 border border-slate-200 hover:border-amber-500'
-                        }">
-                        <span>${escapeHtml(cat)}</span>
-                        <span class="text-[11px] px-2 py-0.5 rounded-full ${isActive ? 'bg-amber-500 text-slate-950 font-bold' : 'bg-slate-100 text-slate-500'}">${count}</span>
-                    </button>
-                `;
+                return '<button type="button" onclick="selectCategory(\'' + escapeJsArg(cat) + '\')" class="shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition cursor-pointer flex items-center gap-2 ' +
+                    (isActive ? 'bg-brand-dark text-white shadow-md' : 'bg-white text-slate-700 border border-slate-200 hover:border-amber-500') +
+                    '"><span>' + escapeHtml(cat) + '</span><span class="text-[11px] px-2 py-0.5 rounded-full ' +
+                    (isActive ? 'bg-amber-500 text-slate-950 font-bold' : 'bg-slate-100 text-slate-500') +
+                    '">' + count + '</span></button>';
             }).join("");
 
-            footerCatContainer.innerHTML = storeData.categories.slice(0, 5).map(cat => `
-                <li>
-                    <a href="#collections" onclick="selectCategory('${escapeJsArg(cat)}')" class="hover:text-amber-400 transition">${escapeHtml(cat)}</a>
-                </li>
-            `).join("");
+            footerCatContainer.innerHTML = storeData.categories.slice(0, 5).map(cat =>
+                '<li><a href="#collections" onclick="selectCategory(\'' + escapeJsArg(cat) + '\')" class="hover:text-amber-400 transition">' + escapeHtml(cat) + '</a></li>'
+            ).join("");
 
             const currentProdCat = prodCategorySelect.value;
-            prodCategorySelect.innerHTML = storeData.categories.map(cat => `
-                <option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>
-            `).join("");
+            prodCategorySelect.innerHTML = storeData.categories.map(cat =>
+                '<option value="' + escapeHtml(cat) + '">' + escapeHtml(cat) + '</option>'
+            ).join("");
             if (currentProdCat && storeData.categories.includes(currentProdCat)) {
                 prodCategorySelect.value = currentProdCat;
             }
 
-            adminCatList.innerHTML = storeData.categories.map((cat, idx) => `
-                <div class="flex items-center justify-between bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl">
-                    <span class="text-sm font-semibold text-slate-800">${escapeHtml(cat)}</span>
-                    <button onclick="deleteCategory(${idx})" aria-label="Remove Category" title="Remove Category" class="text-rose-500 hover:text-rose-700 text-xs font-semibold px-2 py-1 rounded-lg hover:bg-rose-50 transition cursor-pointer">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-            `).join("");
+            adminCatList.innerHTML = storeData.categories.map((cat, idx) =>
+                '<div class="flex items-center justify-between bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl">' +
+                '<span class="text-sm font-semibold text-slate-800">' + escapeHtml(cat) + '</span>' +
+                '<button type="button" onclick="deleteCategory(' + idx + ')" aria-label="Remove Category" title="Remove Category" class="text-rose-500 hover:text-rose-700 text-xs font-semibold px-2 py-1 rounded-lg hover:bg-rose-50 transition cursor-pointer">' +
+                '<i class="fa-solid fa-trash"></i></button></div>'
+            ).join("");
         }
 
         function selectCategory(cat) {
@@ -1214,7 +1160,6 @@
             renderProducts();
         }
 
-        // Render Product Cards Grid
         function renderProducts() {
             const grid = document.getElementById("productGrid");
             const emptyState = document.getElementById("emptyState");
@@ -1249,91 +1194,54 @@
             grid.innerHTML = filtered.map(prod => {
                 const imgs = getProductImages(prod);
                 const coverImg = imgs[0] || "";
-                const fallbackImg = `https://placehold.co/600x500/181b22/f59e0b?text=${encodeURIComponent(prod.title)}`;
+                const fallbackImg = "https://placehold.co/600x500/181b22/f59e0b?text=" + encodeURIComponent(prod.title);
                 const safeId = escapeJsArg(prod.id);
-                return `
-                    <div class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden flex flex-col justify-between card-hover group">
-                        <div>
-                            <!-- Image Container -->
-                            <div onclick="openProductDetail('${safeId}')" class="relative aspect-[4/3] bg-slate-100 overflow-hidden cursor-pointer">
-                                <img src="${escapeHtml(coverImg || fallbackImg)}" alt="${escapeHtml(prod.title)}" onerror="this.src='${fallbackImg}'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                ${prod.badge ? `
-                                    <span class="absolute top-3 left-3 bg-brand-dark/90 backdrop-blur text-amber-400 text-[11px] font-bold px-3 py-1 rounded-full shadow">
-                                        ${escapeHtml(prod.badge)}
-                                    </span>
-                                ` : ''}
-                                ${imgs.length > 1 ? `
-                                    <span class="absolute top-3 right-3 bg-slate-950/80 backdrop-blur text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
-                                        <i class="fa-regular fa-images text-amber-400 mr-1"></i>${imgs.length}
-                                    </span>
-                                ` : ''}
-                                <span class="absolute bottom-3 right-3 bg-white/90 backdrop-blur text-slate-800 text-[11px] font-semibold px-2.5 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition">
-                                    <i class="fa-solid fa-eye mr-1 text-amber-600"></i> Quick View
-                                </span>
-                            </div>
 
-                            <!-- Card Body -->
-                            <div class="p-5">
-                                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-600">${escapeHtml(prod.category)}</span>
-                                <h3 onclick="openProductDetail('${safeId}')" class="font-display font-bold text-lg text-slate-900 mt-0.5 hover:text-amber-600 transition cursor-pointer line-clamp-1">
-                                    ${escapeHtml(prod.title)}
-                                </h3>
-                                <p class="text-slate-500 text-xs mt-1.5 line-clamp-2 leading-relaxed">
-                                    ${escapeHtml(prod.description)}
-                                </p>
-
-                                <!-- Sizes Preview -->
-                                <div class="mt-3 flex items-center gap-1.5 text-[11px] text-slate-600">
-                                    <span class="font-semibold text-slate-800">Sizes:</span>
-                                    <span class="truncate">${escapeHtml(prod.sizes || '40 - 44')}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Price & Action Footer -->
-                        <div class="px-5 pb-5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-                            <div>
-                                <span class="block text-[10px] text-slate-400 uppercase font-semibold">Price</span>
-                                <span class="font-display font-extrabold text-lg text-slate-900">${formatPrice(prod.pricePkr)}</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <button onclick="openProductDetail('${safeId}')" class="px-2.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition cursor-pointer">
-                                    Details
-                                </button>
-                                <button onclick="addToCart('${safeId}')" title="Add to Cart" class="px-3 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold rounded-xl transition flex items-center gap-1 cursor-pointer">
-                                    <i class="fa-solid fa-plus"></i> Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                return '<div class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden flex flex-col justify-between card-hover group">' +
+                    '<div>' +
+                    '<div onclick="openProductDetail(\'' + safeId + '\')" class="relative aspect-[4/3] bg-slate-100 overflow-hidden cursor-pointer">' +
+                    '<img src="' + escapeHtml(coverImg || fallbackImg) + '" alt="' + escapeHtml(prod.title) + '" onerror="this.onerror=null;this.src=\'' + escapeHtml(fallbackImg) + '\'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">' +
+                    (prod.badge ? '<span class="absolute top-3 left-3 bg-brand-dark/90 backdrop-blur text-amber-400 text-[11px] font-bold px-3 py-1 rounded-full shadow">' + escapeHtml(prod.badge) + '</span>' : '') +
+                    (imgs.length > 1 ? '<span class="absolute top-3 right-3 bg-slate-950/80 backdrop-blur text-white text-[10px] font-bold px-2.5 py-1 rounded-full"><i class="fa-regular fa-images text-amber-400 mr-1"></i>' + imgs.length + '</span>' : '') +
+                    '<span class="absolute bottom-3 right-3 bg-white/90 backdrop-blur text-slate-800 text-[11px] font-semibold px-2.5 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye mr-1 text-amber-600"></i> Quick View</span>' +
+                    '</div>' +
+                    '<div class="p-5">' +
+                    '<span class="text-[11px] font-bold uppercase tracking-wider text-amber-600">' + escapeHtml(prod.category) + '</span>' +
+                    '<h3 onclick="openProductDetail(\'' + safeId + '\')" class="font-display font-bold text-lg text-slate-900 mt-0.5 hover:text-amber-600 transition cursor-pointer line-clamp-1">' + escapeHtml(prod.title) + '</h3>' +
+                    '<p class="text-slate-500 text-xs mt-1.5 line-clamp-2 leading-relaxed">' + escapeHtml(prod.description) + '</p>' +
+                    '<div class="mt-3 flex items-center gap-1.5 text-[11px] text-slate-600"><span class="font-semibold text-slate-800">Sizes:</span><span class="truncate">' + escapeHtml(prod.sizes || "40 - 44") + '</span></div>' +
+                    '</div></div>' +
+                    '<div class="px-5 pb-5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">' +
+                    '<div><span class="block text-[10px] text-slate-400 uppercase font-semibold">Price</span><span class="font-display font-extrabold text-lg text-slate-900">' + formatPrice(prod.pricePkr) + '</span></div>' +
+                    '<div class="flex items-center gap-1.5">' +
+                    '<button type="button" onclick="openProductDetail(\'' + safeId + '\')" class="px-2.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition cursor-pointer">Details</button>' +
+                    '<button type="button" onclick="addToCart(\'' + safeId + '\')" title="Add to Cart" class="px-3 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold rounded-xl transition flex items-center gap-1 cursor-pointer"><i class="fa-solid fa-plus"></i> Cart</button>' +
+                    '</div></div></div>';
             }).join("");
 
             renderAdminProductList();
         }
 
-        // Product Detail Modal Logic (with Multi-Photo Thumbnails)
         function openProductDetail(productId) {
             const prod = storeData.products.find(p => p.id === productId);
             if (!prod) return;
 
             const imgs = getProductImages(prod);
-            const fallbackImg = `https://placehold.co/800x600/181b22/f59e0b?text=${encodeURIComponent(prod.title)}`;
+            const fallbackImg = "https://placehold.co/800x600/181b22/f59e0b?text=" + encodeURIComponent(prod.title);
             const detailImg = document.getElementById("detailImage");
             const activeMainImg = imgs[0] || fallbackImg;
             detailImg.src = activeMainImg;
             detailImg.alt = prod.title;
-            detailImg.onerror = () => { detailImg.src = fallbackImg; };
+            detailImg.onerror = () => { detailImg.onerror = null; detailImg.src = fallbackImg; };
 
             const thumbContainer = document.getElementById("detailThumbnails");
             if (imgs.length > 1) {
                 thumbContainer.classList.remove("hidden");
-                thumbContainer.innerHTML = imgs.map((src, idx) => `
-                    <button type="button" onclick="setDetailMainImage('${escapeJsArg(src)}', '${escapeJsArg(fallbackImg)}', ${idx})"
-                        class="detail-thumb-btn w-14 h-14 rounded-xl overflow-hidden border-2 shrink-0 transition cursor-pointer ${idx === 0 ? 'border-amber-500' : 'border-transparent opacity-70 hover:opacity-100'}">
-                        <img src="${escapeHtml(src)}" alt="" onerror="this.src='${fallbackImg}'" class="w-full h-full object-cover">
-                    </button>
-                `).join("");
+                thumbContainer.innerHTML = imgs.map((src, idx) =>
+                    '<button type="button" onclick="setDetailMainImage(\'' + escapeJsArg(src) + '\', \'' + escapeJsArg(fallbackImg) + '\', ' + idx + ')" class="detail-thumb-btn w-14 h-14 rounded-xl overflow-hidden border-2 shrink-0 transition cursor-pointer ' +
+                    (idx === 0 ? 'border-amber-500' : 'border-transparent opacity-70 hover:opacity-100') +
+                    '"><img src="' + escapeHtml(src) + '" alt="" onerror="this.onerror=null;this.src=\'' + escapeHtml(fallbackImg) + '\'" class="w-full h-full object-cover"></button>'
+                ).join("");
             } else {
                 thumbContainer.classList.add("hidden");
                 thumbContainer.innerHTML = "";
@@ -1377,7 +1285,7 @@
         function setDetailMainImage(src, fallbackImg, activeIdx) {
             const detailImg = document.getElementById("detailImage");
             detailImg.src = src || fallbackImg;
-            detailImg.onerror = () => { detailImg.src = fallbackImg; };
+            detailImg.onerror = () => { detailImg.onerror = null; detailImg.src = fallbackImg; };
 
             document.querySelectorAll(".detail-thumb-btn").forEach((btn, idx) => {
                 if (idx === activeIdx) {
@@ -1394,16 +1302,9 @@
             const sizesContainer = document.getElementById("detailSizes");
             sizesContainer.innerHTML = sizeList.map(sz => {
                 const active = sz === selectedDetailSize;
-                return `
-                    <button type="button" onclick="selectDetailSize('${escapeJsArg(sz)}', '${escapeJsArg(sizeList.join(","))}')"
-                        class="px-3 py-1.5 rounded-xl text-xs font-bold border transition cursor-pointer ${
-                            active
-                                ? 'bg-brand-dark text-amber-400 border-brand-dark'
-                                : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-amber-500'
-                        }">
-                        ${escapeHtml(sz)}
-                    </button>
-                `;
+                return '<button type="button" onclick="selectDetailSize(\'' + escapeJsArg(sz) + '\', \'' + escapeJsArg(sizeList.join(",")) + '\')" class="px-3 py-1.5 rounded-xl text-xs font-bold border transition cursor-pointer ' +
+                    (active ? 'bg-brand-dark text-amber-400 border-brand-dark' : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-amber-500') +
+                    '">' + escapeHtml(sz) + '</button>';
             }).join("");
         }
 
@@ -1416,9 +1317,6 @@
             document.getElementById("productDetailModal").classList.add("hidden");
         }
 
-        // =================================================================
-        // SHOPPING CART LOGIC
-        // =================================================================
         function addToCart(productId, size = "") {
             const prod = storeData.products.find(p => p.id === productId);
             if (!prod) return;
@@ -1441,7 +1339,7 @@
                 });
             }
             persistCartData();
-            showToast(`Added "${prod.title}" (Size ${defaultSize}) to cart!`);
+            showToast('Added "' + prod.title + '" (Size ' + defaultSize + ') to cart!');
         }
 
         function updateCartQty(index, delta) {
@@ -1464,15 +1362,10 @@
 
             if (cartItems.length === 0) {
                 footer.classList.add("hidden");
-                container.innerHTML = `
-                    <div class="text-center py-16 space-y-3">
-                        <div class="w-14 h-14 bg-slate-100 text-slate-400 rounded-2xl flex items-center justify-center mx-auto">
-                            <i class="fa-solid fa-bag-shopping text-2xl"></i>
-                        </div>
-                        <p class="font-bold text-slate-800 text-sm">Your cart is empty</p>
-                        <p class="text-xs text-slate-500">Browse our footwear collection and add your favorite pair.</p>
-                    </div>
-                `;
+                container.innerHTML = '<div class="text-center py-16 space-y-3">' +
+                    '<div class="w-14 h-14 bg-slate-100 text-slate-400 rounded-2xl flex items-center justify-center mx-auto"><i class="fa-solid fa-bag-shopping text-2xl"></i></div>' +
+                    '<p class="font-bold text-slate-800 text-sm">Your cart is empty</p>' +
+                    '<p class="text-xs text-slate-500">Browse our footwear collection and add your favorite pair.</p></div>';
                 return;
             }
 
@@ -1481,20 +1374,16 @@
 
             container.innerHTML = cartItems.map((item, idx) => {
                 totalPkr += item.pricePkr * item.qty;
-                return `
-                    <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200">
-                        <img src="${escapeHtml(item.image)}" alt="" onerror="this.src='https://placehold.co/100x100/181b22/f59e0b?text=Shoe'" class="w-14 h-14 rounded-xl object-cover shrink-0 bg-slate-200">
-                        <div class="flex-1 min-w-0">
-                            <h5 class="font-bold text-xs sm:text-sm text-slate-900 truncate">${escapeHtml(item.title)}</h5>
-                            <p class="text-[11px] text-slate-500">Size: <strong>${escapeHtml(item.size)}</strong> &bull; ${formatPrice(item.pricePkr)}</p>
-                            <div class="flex items-center gap-2 mt-1.5">
-                                <button onclick="updateCartQty(${idx}, -1)" class="w-6 h-6 rounded-lg bg-white border border-slate-300 text-xs font-bold hover:bg-slate-100 cursor-pointer">-</button>
-                                <span class="text-xs font-bold px-1">${item.qty}</span>
-                                <button onclick="updateCartQty(${idx}, 1)" class="w-6 h-6 rounded-lg bg-white border border-slate-300 text-xs font-bold hover:bg-slate-100 cursor-pointer">+</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                return '<div class="flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200">' +
+                    '<img src="' + escapeHtml(item.image) + '" alt="" onerror="this.onerror=null;this.src=\'https://placehold.co/100x100/181b22/f59e0b?text=Shoe\'" class="w-14 h-14 rounded-xl object-cover shrink-0 bg-slate-200">' +
+                    '<div class="flex-1 min-w-0">' +
+                    '<h5 class="font-bold text-xs sm:text-sm text-slate-900 truncate">' + escapeHtml(item.title) + '</h5>' +
+                    '<p class="text-[11px] text-slate-500">Size: <strong>' + escapeHtml(item.size) + '</strong> &bull; ' + formatPrice(item.pricePkr) + '</p>' +
+                    '<div class="flex items-center gap-2 mt-1.5">' +
+                    '<button type="button" onclick="updateCartQty(' + idx + ', -1)" class="w-6 h-6 rounded-lg bg-white border border-slate-300 text-xs font-bold hover:bg-slate-100 cursor-pointer">-</button>' +
+                    '<span class="text-xs font-bold px-1">' + item.qty + '</span>' +
+                    '<button type="button" onclick="updateCartQty(' + idx + ', 1)" class="w-6 h-6 rounded-lg bg-white border border-slate-300 text-xs font-bold hover:bg-slate-100 cursor-pointer">+</button>' +
+                    '</div></div></div>';
             }).join("");
 
             totalEl.textContent = formatPrice(totalPkr);
@@ -1511,21 +1400,14 @@
 
         function checkoutCartWhatsApp() {
             if (cartItems.length === 0) return;
-            const phone = (storeData.settings.whatsapp || "9233455854484").replace(/[^0-9]/g, "");
+            const phone = (storeData.settings.whatsapp || "9233455854484").replace(/[^0-9]/g, "") || "9233455854484";
             let totalPkr = 0;
             const lines = cartItems.map((item, i) => {
                 totalPkr += item.pricePkr * item.qty;
-                return `${i + 1}. *${item.title}* (${item.sku}) - Size: ${item.size} x ${item.qty} = ${formatPrice(item.pricePkr * item.qty)}`;
+                return (i + 1) + ". *" + item.title + "* (" + item.sku + ") - Size: " + item.size + " x " + item.qty + " = " + formatPrice(item.pricePkr * item.qty);
             });
-            const msg = `Assalam-o-Alaikum WalkOn Shoes! I would like to place an order:
-
-${lines.join("
-")}
-
-*Total:* ${formatPrice(totalPkr)}
-
-Please confirm my order & delivery charges.`;
-            window.open(`https://wa.me/${phone || '9233455854484'}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+            const msg = "Assalam-o-Alaikum WalkOn Shoes! I would like to place an order:\n\n" + lines.join("\n") + "\n\n*Total:* " + formatPrice(totalPkr) + "\n\nPlease confirm my order & delivery charges.";
+            window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(msg), "_blank", "noopener,noreferrer");
         }
 
         function checkoutCartEmail() {
@@ -1534,44 +1416,21 @@ Please confirm my order & delivery charges.`;
             let totalPkr = 0;
             const lines = cartItems.map((item, i) => {
                 totalPkr += item.pricePkr * item.qty;
-                return `${i + 1}. ${item.title} (${item.sku}) | Size: ${item.size} | Qty: ${item.qty} | Subtotal: ${formatPrice(item.pricePkr * item.qty)}`;
+                return (i + 1) + ". " + item.title + " (" + item.sku + ") | Size: " + item.size + " | Qty: " + item.qty + " | Subtotal: " + formatPrice(item.pricePkr * item.qty);
             });
-            const subject = `New WalkOn Shoes Order (${cartItems.length} item(s))`;
-            const body = `Hello WalkOn Shoes Team,
-
-I would like to order the following items:
-
-${lines.join("
-")}
-
-Total: ${formatPrice(totalPkr)}
-
-Customer Name:
-Phone Number:
-Shipping Address:
-`;
-            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            const subject = "New WalkOn Shoes Order (" + cartItems.length + " item(s))";
+            const body = "Hello WalkOn Shoes Team,\n\nI would like to order the following items:\n\n" + lines.join("\n") + "\n\nTotal: " + formatPrice(totalPkr) + "\n\nCustomer Name:\nPhone Number:\nShipping Address:\n";
+            window.location.href = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
         }
 
-        // Order / Inquiry Actions (WhatsApp & Gmail)
         function orderProductWhatsApp(productId, chosenSize = "") {
             const prod = storeData.products.find(p => p.id === productId);
             if (!prod) return;
 
-            const phone = (storeData.settings.whatsapp || "9233455854484").replace(/[^0-9]/g, "");
-            const sizeText = chosenSize ? `
-Selected Size: ${chosenSize}` : "";
-            const msg = `Assalam-o-Alaikum WalkOn Shoes! I want to order / inquire about:
-
-*Shoe:* ${prod.title}
-*Category:* ${prod.category}
-*Article:* ${prod.sku || prod.id}
-*Price:* ${formatPrice(prod.pricePkr)}${sizeText}
-
-Please share availability & delivery details.`;
-
-            const url = `https://wa.me/${phone || '9233455854484'}?text=${encodeURIComponent(msg)}`;
-            window.open(url, "_blank", "noopener,noreferrer");
+            const phone = (storeData.settings.whatsapp || "9233455854484").replace(/[^0-9]/g, "") || "9233455854484";
+            const sizeText = chosenSize ? "\nSelected Size: " + chosenSize : "";
+            const msg = "Assalam-o-Alaikum WalkOn Shoes! I want to order / inquire about:\n\n*Shoe:* " + prod.title + "\n*Category:* " + prod.category + "\n*Article:* " + (prod.sku || prod.id) + "\n*Price:* " + formatPrice(prod.pricePkr) + sizeText + "\n\nPlease share availability & delivery details.";
+            window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(msg), "_blank", "noopener,noreferrer");
         }
 
         function orderProductEmail(productId, chosenSize = "") {
@@ -1579,23 +1438,11 @@ Please share availability & delivery details.`;
             if (!prod) return;
 
             const email = storeData.settings.email || "walkonshoes@gmail.com";
-            const subject = `Shoe Order Inquiry: ${prod.title} (${prod.sku || prod.id})`;
-            const body = `Hello WalkOn Shoes Team,
-
-I would like to place an order / ask details for:
-- Shoe: ${prod.title}
-- Category: ${prod.category}
-- Price: ${formatPrice(prod.pricePkr)}
-- Size: ${chosenSize || 'Please advise'}
-
-Name:
-Phone:
-Delivery Address:
-`;
-            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            const subject = "Shoe Order Inquiry: " + prod.title + " (" + (prod.sku || prod.id) + ")";
+            const body = "Hello WalkOn Shoes Team,\n\nI would like to place an order / ask details for:\n- Shoe: " + prod.title + "\n- Category: " + prod.category + "\n- Price: " + formatPrice(prod.pricePkr) + "\n- Size: " + (chosenSize || "Please advise") + "\n\nName:\nPhone:\nDelivery Address:\n";
+            window.location.href = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
         }
 
-        // Wholesale Manufacturing Inquiry Handlers
         function submitWholesaleInquiry(e) {
             e.preventDefault();
             const name = document.getElementById("inqName").value.trim();
@@ -1605,16 +1452,10 @@ Delivery Address:
             const message = document.getElementById("inqMessage").value.trim();
 
             const email = storeData.settings.email || "walkonshoes@gmail.com";
-            const subject = `WalkOn Manufacturing / Wholesale Inquiry from ${name}`;
-            const body = `Business/Name: ${name}
-Phone/WhatsApp: ${phone}
-Inquiry Type: ${type}
-Estimated Quantity: ${qty}
+            const subject = "WalkOn Manufacturing / Wholesale Inquiry from " + name;
+            const body = "Business/Name: " + name + "\nPhone/WhatsApp: " + phone + "\nInquiry Type: " + type + "\nEstimated Quantity: " + qty + "\n\nRequirements:\n" + message;
 
-Requirements:
-${message}`;
-
-            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
             showToast("Opening your email app to send inquiry to " + email);
         }
 
@@ -1625,21 +1466,10 @@ ${message}`;
             const qty = document.getElementById("inqQty").value.trim() || "Not specified";
             const message = document.getElementById("inqMessage").value.trim() || "Please share your wholesale catalog & factory rates.";
 
-            const waNumber = (storeData.settings.whatsapp || "9233455854484").replace(/[^0-9]/g, "");
-            const text = `*WalkOn Shoes - Wholesale / Manufacturing Inquiry*
-
-*Name/Business:* ${name}
-*Contact:* ${phone}
-*Order Type:* ${type}
-*Quantity:* ${qty}
-*Details:* ${message}`;
-            window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+            const waNumber = (storeData.settings.whatsapp || "9233455854484").replace(/[^0-9]/g, "") || "9233455854484";
+            const text = "*WalkOn Shoes - Wholesale / Manufacturing Inquiry*\n\n*Name/Business:* " + name + "\n*Contact:* " + phone + "\n*Order Type:* " + type + "\n*Quantity:* " + qty + "\n*Details:* " + message;
+            window.open("https://wa.me/" + waNumber + "?text=" + encodeURIComponent(text), "_blank", "noopener,noreferrer");
         }
-
-        // =================================================================
-        // SECRET ADMIN ACCESS & PASSWORD LOCK
-        // =================================================================
-        let pendingAdminTab = "add-product";
 
         function triggerSecretAdminAccess(defaultTab = "add-product") {
             pendingAdminTab = defaultTab;
@@ -1715,9 +1545,6 @@ ${message}`;
             }
         }
 
-        // =================================================================
-        // ADMIN PANEL FUNCTIONS (MULTI-PHOTO GALLERY + CRUD + SETTINGS)
-        // =================================================================
         function openAdminModal(defaultTab = "add-product") {
             if (!isAdminAuthenticated) {
                 triggerSecretAdminAccess(defaultTab);
@@ -1738,8 +1565,8 @@ ${message}`;
                 btn.classList.add("text-slate-600", "font-semibold");
             });
 
-            document.getElementById(`panel-${tabName}`).classList.remove("hidden");
-            const activeBtn = document.getElementById(`tab-${tabName}`);
+            document.getElementById("panel-" + tabName).classList.remove("hidden");
+            const activeBtn = document.getElementById("tab-" + tabName);
             if (activeBtn) {
                 activeBtn.classList.add("bg-brand-dark", "text-white", "font-bold");
                 activeBtn.classList.remove("text-slate-600", "font-semibold");
@@ -1751,7 +1578,7 @@ ${message}`;
             const listEl = document.getElementById("multiImagePreviewList");
             const countLabel = document.getElementById("multiImageCountLabel");
 
-            countLabel.textContent = `${currentGalleryImages.length} ${currentGalleryImages.length === 1 ? "photo" : "photos"}`;
+            countLabel.textContent = currentGalleryImages.length + " " + (currentGalleryImages.length === 1 ? "photo" : "photos");
 
             if (currentGalleryImages.length === 0) {
                 container.classList.add("hidden");
@@ -1760,18 +1587,16 @@ ${message}`;
             }
 
             container.classList.remove("hidden");
-            listEl.innerHTML = currentGalleryImages.map((src, idx) => `
-                <div class="relative w-20 h-20 rounded-xl overflow-hidden border-2 shrink-0 bg-white ${idx === 0 ? 'border-amber-500' : 'border-slate-300'}">
-                    <img src="${escapeHtml(src)}" alt="" onerror="this.src='https://placehold.co/120x120/181b22/f59e0b?text=Photo'" class="w-full h-full object-cover">
-                    <button type="button" onclick="removeGalleryImage(${idx})" title="Remove photo" class="absolute top-1 right-1 w-5 h-5 rounded-full bg-rose-600 text-white text-[10px] flex items-center justify-center shadow cursor-pointer">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                    ${idx === 0
-                        ? `<span class="absolute bottom-0 inset-x-0 bg-amber-500 text-slate-950 text-[9px] font-extrabold text-center py-0.5">COVER</span>`
-                        : `<button type="button" onclick="makeCoverImage(${idx})" class="absolute bottom-0 inset-x-0 bg-slate-950/80 hover:bg-slate-950 text-white text-[9px] font-semibold text-center py-0.5 cursor-pointer">Set Cover</button>`
-                    }
-                </div>
-            `).join("");
+            listEl.innerHTML = currentGalleryImages.map((src, idx) =>
+                '<div class="relative w-20 h-20 rounded-xl overflow-hidden border-2 shrink-0 bg-white ' +
+                (idx === 0 ? 'border-amber-500' : 'border-slate-300') +
+                '"><img src="' + escapeHtml(src) + '" alt="" onerror="this.onerror=null;this.src=\'https://placehold.co/120x120/181b22/f59e0b?text=Photo\'" class="w-full h-full object-cover">' +
+                '<button type="button" onclick="removeGalleryImage(' + idx + ')" title="Remove photo" class="absolute top-1 right-1 w-5 h-5 rounded-full bg-rose-600 text-white text-[10px] flex items-center justify-center shadow cursor-pointer"><i class="fa-solid fa-xmark"></i></button>' +
+                (idx === 0
+                    ? '<span class="absolute bottom-0 inset-x-0 bg-amber-500 text-slate-950 text-[9px] font-extrabold text-center py-0.5">COVER</span>'
+                    : '<button type="button" onclick="makeCoverImage(' + idx + ')" class="absolute bottom-0 inset-x-0 bg-slate-950/80 hover:bg-slate-950 text-white text-[9px] font-semibold text-center py-0.5 cursor-pointer">Set Cover</button>') +
+                '</div>'
+            ).join("");
         }
 
         function handleImageUpload(event) {
@@ -1859,7 +1684,7 @@ ${message}`;
             const category = document.getElementById("prodCategory").value;
             const pricePkr = Number(document.getElementById("prodPrice").value);
             const badge = document.getElementById("prodBadge").value;
-            const sku = document.getElementById("prodSku").value.trim() || `WO-${Math.floor(100 + Math.random() * 900)}`;
+            const sku = document.getElementById("prodSku").value.trim() || ("WO-" + Math.floor(100 + Math.random() * 900));
             const sizes = document.getElementById("prodSizes").value.trim() || "40, 41, 42, 43, 44";
             const material = document.getElementById("prodMaterial").value.trim() || "Premium Quality Upper";
             const sole = document.getElementById("prodSole").value.trim() || "Durable Comfort Sole";
@@ -1878,7 +1703,7 @@ ${message}`;
                         finalImages = getProductImages(storeData.products[idx]);
                     }
                     if (finalImages.length === 0) {
-                        finalImages = [`https://placehold.co/800x600/181b22/f59e0b?text=${encodeURIComponent(title)}`];
+                        finalImages = ["https://placehold.co/800x600/181b22/f59e0b?text=" + encodeURIComponent(title)];
                     }
                     storeData.products[idx] = {
                         ...storeData.products[idx],
@@ -1890,7 +1715,7 @@ ${message}`;
                 }
             } else {
                 if (finalImages.length === 0) {
-                    finalImages = [`https://placehold.co/800x600/181b22/f59e0b?text=${encodeURIComponent(title)}`];
+                    finalImages = ["https://placehold.co/800x600/181b22/f59e0b?text=" + encodeURIComponent(title)];
                 }
                 storeData.products.unshift({
                     id: "wo-" + Date.now(),
@@ -1959,29 +1784,20 @@ ${message}`;
                 const imgs = getProductImages(prod);
                 const coverImg = imgs[0] || "";
                 const safeId = escapeJsArg(prod.id);
-                return `
-                    <div class="flex items-center justify-between gap-3 bg-slate-50 border border-slate-200 p-3 rounded-2xl">
-                        <div class="flex items-center gap-3 min-w-0">
-                            <img src="${escapeHtml(coverImg)}" alt="" onerror="this.src='https://placehold.co/100x100/181b22/f59e0b?text=Shoe'" class="w-12 h-12 rounded-xl object-cover shrink-0 bg-slate-200">
-                            <div class="min-w-0">
-                                <h5 class="font-bold text-sm text-slate-900 truncate">${escapeHtml(prod.title)}</h5>
-                                <p class="text-xs text-slate-500">${escapeHtml(prod.category)} &bull; ${imgs.length} photo(s) &bull; <strong>Rs. ${Number(prod.pricePkr).toLocaleString()}</strong></p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2 shrink-0">
-                            <button onclick="editProduct('${safeId}')" class="px-3 py-1.5 bg-white border border-slate-300 hover:border-amber-500 text-slate-800 text-xs font-semibold rounded-xl transition cursor-pointer">
-                                Edit
-                            </button>
-                            <button onclick="deleteProduct('${safeId}')" class="px-3 py-1.5 bg-rose-50 hover:bg-rose-600 text-rose-600 hover:text-white text-xs font-semibold rounded-xl transition cursor-pointer">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-                `;
+                return '<div class="flex items-center justify-between gap-3 bg-slate-50 border border-slate-200 p-3 rounded-2xl">' +
+                    '<div class="flex items-center gap-3 min-w-0">' +
+                    '<img src="' + escapeHtml(coverImg) + '" alt="" onerror="this.onerror=null;this.src=\'https://placehold.co/100x100/181b22/f59e0b?text=Shoe\'" class="w-12 h-12 rounded-xl object-cover shrink-0 bg-slate-200">' +
+                    '<div class="min-w-0">' +
+                    '<h5 class="font-bold text-sm text-slate-900 truncate">' + escapeHtml(prod.title) + '</h5>' +
+                    '<p class="text-xs text-slate-500">' + escapeHtml(prod.category) + ' &bull; ' + imgs.length + ' photo(s) &bull; <strong>Rs. ' + Number(prod.pricePkr).toLocaleString() + '</strong></p>' +
+                    '</div></div>' +
+                    '<div class="flex items-center gap-2 shrink-0">' +
+                    '<button type="button" onclick="editProduct(\'' + safeId + '\')" class="px-3 py-1.5 bg-white border border-slate-300 hover:border-amber-500 text-slate-800 text-xs font-semibold rounded-xl transition cursor-pointer">Edit</button>' +
+                    '<button type="button" onclick="deleteProduct(\'' + safeId + '\')" class="px-3 py-1.5 bg-rose-50 hover:bg-rose-600 text-rose-600 hover:text-white text-xs font-semibold rounded-xl transition cursor-pointer">Delete</button>' +
+                    '</div></div>';
             }).join("");
         }
 
-        // Category Management
         function addCategory(e) {
             e.preventDefault();
             const input = document.getElementById("newCategoryInput");
@@ -1997,7 +1813,7 @@ ${message}`;
             input.value = "";
             persistStoreData();
             renderCategories();
-            showToast(`Category "${name}" added!`);
+            showToast('Category "' + name + '" added!');
         }
 
         function deleteCategory(index) {
@@ -2019,10 +1835,9 @@ ${message}`;
             persistStoreData();
             renderCategories();
             renderProducts();
-            showToast(`Category "${removed}" removed.`);
+            showToast('Category "' + removed + '" removed.');
         }
 
-        // Save Store Contact Settings & Admin Password
         function saveStoreSettings(e) {
             e.preventDefault();
             storeData.settings.email = document.getElementById("setEmail").value.trim() || "walkonshoes@gmail.com";
@@ -2041,26 +1856,23 @@ ${message}`;
             showToast("WalkOn contact details & admin password saved!");
         }
 
-        // Export Standalone Updated HTML File for Permanent Free Static Hosting
         function exportUpdatedHTML() {
             try {
-                const docClone = document.documentElement.cloneNode(true);
-                const scriptTag = docClone.querySelector("#walkon-data-script");
-                if (scriptTag) {
-                    const serializedData = JSON.stringify(storeData, null, 4);
-                    scriptTag.textContent = scriptTag.textContent.replace(
-                        /const DEFAULT_STORE_DATA = \{[\s\S]*?
-        \};/,
-                        `const DEFAULT_STORE_DATA = ${serializedData};`
-                    );
-                }
+                const safeJson = JSON.stringify(storeData, null, 4).replace(/</g, "\\u003c");
+                const parser = new DOMParser();
+                const docClone = parser.parseFromString("<!DOCTYPE html>\n" + document.documentElement.outerHTML, "text/html");
+
                 ["adminModal", "adminLockModal", "productDetailModal", "cartDrawer", "mobileMenu", "toastBox"].forEach(id => {
-                    const el = docClone.querySelector(`#${id}`);
+                    const el = docClone.getElementById(id);
                     if (el) el.classList.add("hidden");
                 });
 
-                const fullHtml = "<!DOCTYPE html>
-" + docClone.outerHTML;
+                const jsonScriptEl = docClone.getElementById("walkon-store-json");
+                if (jsonScriptEl) {
+                    jsonScriptEl.textContent = "\n" + safeJson + "\n";
+                }
+
+                const fullHtml = "<!DOCTYPE html>\n" + docClone.documentElement.outerHTML;
                 const blob = new Blob([fullHtml], { type: "text/html;charset=utf-8" });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
@@ -2070,7 +1882,7 @@ ${message}`;
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-                showToast("Downloaded updated index.html! Upload it to Netlify/GitHub.");
+                showToast("Downloaded updated index.html! Upload it to GitHub/Netlify.");
             } catch (err) {
                 showToast("Export failed. Try JSON backup instead.", "error");
             }
@@ -2099,7 +1911,6 @@ ${message}`;
             showToast("Catalog restored to default WalkOn samples.");
         }
 
-        // UI Utilities
         function toggleMobileMenu() {
             document.getElementById("mobileMenu").classList.toggle("hidden");
         }
@@ -2138,10 +1949,11 @@ ${message}`;
             return String(str)
                 .replace(/\\/g, "\\\\")
                 .replace(/'/g, "\\'")
-                .replace(/"/g, "&quot;");
+                .replace(/"/g, "&quot;")
+                .replace(/\n/g, "\\n")
+                .replace(/\r/g, "\\r");
         }
 
-        // Initialize Website on Load
         window.addEventListener("DOMContentLoaded", () => {
             document.getElementById("currentYear").textContent = new Date().getFullYear();
             applyStoreSettingsToUI();
@@ -2151,9 +1963,10 @@ ${message}`;
             initSecretAdminTriggers();
         });
     </script>
+
     <a id="stickyWhatsAppBtn" href="https://wa.me/9233455854484" target="_blank" rel="noopener noreferrer" onclick="openStickyWhatsApp(event)" class="walkon-sticky-whatsapp" aria-label="Chat on WhatsApp">
-    <i class="fa-brands fa-whatsapp text-xl"></i>
-    <span>WhatsApp</span>
-</a>
+        <i class="fa-brands fa-whatsapp text-xl"></i>
+        <span>WhatsApp</span>
+    </a>
 </body>
 </html>
